@@ -1,0 +1,58 @@
+//
+// Prefix header for all source files of the 'Pashua' target in the 'Pashua' project
+//
+
+#ifdef __OBJC__
+    #import <Cocoa/Cocoa.h>
+#endif
+
+// Development constants
+#define VERBOSE 1
+
+// Distributed objects constants
+#define DISTOBJ_REGNAME @"net.bluem.pashua.distributedobject"
+
+// Human Interface constants
+#define HI_TEXTFIELD_HEIGHT 22
+#define HI_POPUP_HEIGHT 25
+#define HI_COMBO_HEIGHT 25
+#define HI_RADIOBUTTON_HEIGHT 19
+#define HI_CHECKBOX_HEIGHT 18
+#define HI_DISTANCE 20
+#define HI_BUTTONDISTANCE 12
+#define HI_LABEL_DISTANCE 8
+#define HI_SPACE 12
+#define HI_IMG_BORDERPADDING 14
+#define HI_BUTTONHEIGHT 24
+#define HI_SMALLBUTTONHEIGHT 18
+
+// Exception constants
+#define EXC_CONFIG @"Configuration error"
+
+// Default values
+#define DEFAULT_TITLE @"Pashua"
+#define DEFAULT_ALPHA 1.0
+
+// Configuration string constants
+#define CFG_ATTRSEP @"."
+#define CFG_GLOBAL @"*"
+
+// Localization strings: Words
+#define WRD_OK NSLocalizedStringFromTable(@"OK", @"dict", @"Button title for default button")
+#define WRD_ERROR NSLocalizedStringFromTable(@"Error", @"dict", @"Word 'Error'")
+#define WRD_CANCEL NSLocalizedStringFromTable(@"Cancel", @"dict", @"Word 'Cancel'")
+#define WRD_CHOOSE NSLocalizedStringFromTable(@"Choose", @"dict", @"Word 'Choose'")
+#define WRD_CHOOSE_ELLIPS NSLocalizedStringFromTable(@"Choose...", @"dict", @"Word 'Choose...'")
+
+// Localization strings: Phrases
+#define PHR_CFGENCODING NSLocalizedStringFromTable(@"Cfg encoding err", @"dict", @"Err msg: Config file encoding problem")
+#define PHR_CFGINVLDTYPE NSLocalizedStringFromTable(@"Cfg invalid type", @"dict", @"Error msg: Invalid element type")
+#define PHR_CFGLACKOPTNS NSLocalizedStringFromTable(@"Cfg lacks options", @"dict", @"Error msg: Missing 'option' attributes")
+#define PHR_CFGLACKTEXT NSLocalizedStringFromTable(@"Cfg lacks default or text", @"dict", @"Error msg: Missing 'default' or 'text' attributes")
+#define PHR_CFGLACKTYPE NSLocalizedStringFromTable(@"Cfg lacks type", @"dict", @"Err msg: Missing 'type' attribute")
+#define PHR_CFGLACKXORY NSLocalizedStringFromTable(@"Cfg lacks x or y", @"dict", @"Error msg: x and y attributes both must be provided")
+#define PHR_CFGPATHINVALID NSLocalizedStringFromTable(@"Cfg path invalid", @"dict", @"Err msg: Config file path does not exist")
+#define PHR_CFGPATHNOREAD NSLocalizedStringFromTable(@"Cfg path noread", @"dict", @"Err msg: Config file path is not readable")
+#define PHR_CFGRELYTOOLARGE NSLocalizedStringFromTable(@"Cfg rely too large", @"dict", @"Error msg: Attr. 'rely' is too large")
+#define PHR_CFGSTRANGELINE NSLocalizedStringFromTable(@"Cfg strange line", @"dict", @"Err msg: Don't know what to do with this line")
+#define PHR_IMGINVALID NSLocalizedStringFromTable(@"Image path is invalid", @"dict", @"Error msg: Image path is invalid")

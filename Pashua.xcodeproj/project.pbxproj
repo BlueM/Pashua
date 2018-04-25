@@ -1,0 +1,744 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		22083B132065539900EA6FAD /* PshFilesystemBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = 22083B122065539900EA6FAD /* PshFilesystemBrowser.m */; };
+		22206BB519F13E1300FC1755 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 22206BB419F13E1300FC1755 /* Images.xcassets */; };
+		22248E5D188BF184004EA0D4 /* AppIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 22248E5C188BF184004EA0D4 /* AppIcon.png */; };
+		22248E5F188BF37B004EA0D4 /* AppIcon@2.png in Resources */ = {isa = PBXBuildFile; fileRef = 22248E5E188BF37B004EA0D4 /* AppIcon@2.png */; };
+		223CA13A1469C652002ED89B /* CBMacros.c in Sources */ = {isa = PBXBuildFile; fileRef = 223CA1391469C652002ED89B /* CBMacros.c */; };
+		223CA17F1469C8F4002ED89B /* PshDate.m in Sources */ = {isa = PBXBuildFile; fileRef = 222085640C0C0BB600851864 /* PshDate.m */; };
+		224F251F1996565800E8A28A /* NSImage+PshAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 224F251E1996565800E8A28A /* NSImage+PshAdditions.m */; };
+		225DD2871392FC0E005F9CE1 /* PshText.m in Sources */ = {isa = PBXBuildFile; fileRef = 352F9E32091E684300E440A6 /* PshText.m */; };
+		226F455E140D1FEE00671168 /* PshComboBoxCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 226F455D140D1FEE00671168 /* PshComboBoxCell.m */; };
+		22794FA1140D03F10043D186 /* ClearButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 22794FA0140D03F10043D186 /* ClearButton.m */; };
+		22A59D1119F6FB2B00268160 /* dialog-bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 22A59D1019F6FB2B00268160 /* dialog-bg.png */; };
+		22C7CF39140D6AB9000474ED /* DatePicker+PshAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 22C7CF38140D6AB9000474ED /* DatePicker+PshAdditions.m */; };
+		22EE715A19F0670B00D59652 /* AlertIcon.m in Sources */ = {isa = PBXBuildFile; fileRef = 22EE715919F0670B00D59652 /* AlertIcon.m */; };
+		22EE715E19F0800900D59652 /* NSString+PshAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 22EE715D19F0800900D59652 /* NSString+PshAdditions.m */; };
+		22EE716119F1039600D59652 /* NSView+CBAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 22EE716019F1039600D59652 /* NSView+CBAdditions.m */; };
+		351B25690900EB3D00ED6EA5 /* AppController.m in Sources */ = {isa = PBXBuildFile; fileRef = 351B25680900EB3D00ED6EA5 /* AppController.m */; };
+		351B25700900EB5D00ED6EA5 /* PshWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 351B256E0900EB5D00ED6EA5 /* PshWindow.m */; };
+		351B25890900ED9200ED6EA5 /* ConfigParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 351B25880900ED9200ED6EA5 /* ConfigParser.m */; };
+		352F9C7A091E43AB00E440A6 /* ElementFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 352F9C79091E43AB00E440A6 /* ElementFactory.m */; };
+		352F9D67091E4D3500E440A6 /* PshPopUpButtonExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 352F9D66091E4D3500E440A6 /* PshPopUpButtonExtension.m */; };
+		352F9D6E091E4D5300E440A6 /* PshMatrixExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 352F9D6A091E4D5300E440A6 /* PshMatrixExtension.m */; };
+		352F9D6F091E4D5300E440A6 /* PshButtonExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 352F9D6C091E4D5300E440A6 /* PshButtonExtension.m */; };
+		352F9D76091E4D7900E440A6 /* PshComboBox.m in Sources */ = {isa = PBXBuildFile; fileRef = 352F9D73091E4D7900E440A6 /* PshComboBox.m */; };
+		352F9D77091E4D7900E440A6 /* PshCheckbox.m in Sources */ = {isa = PBXBuildFile; fileRef = 352F9D75091E4D7900E440A6 /* PshCheckbox.m */; };
+		352F9D7E091E4D9900E440A6 /* PshPopup.m in Sources */ = {isa = PBXBuildFile; fileRef = 352F9D7A091E4D9900E440A6 /* PshPopup.m */; };
+		352F9D7F091E4D9900E440A6 /* PshHorizontalLine.m in Sources */ = {isa = PBXBuildFile; fileRef = 352F9D7D091E4D9900E440A6 /* PshHorizontalLine.m */; };
+		352F9D86091E4DB300E440A6 /* PshTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 352F9D83091E4DB300E440A6 /* PshTextField.m */; };
+		352F9D87091E4DB300E440A6 /* PshRadioButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 352F9D85091E4DB300E440A6 /* PshRadioButton.m */; };
+		352F9DB4091E4F9600E440A6 /* PshTextbox.m in Sources */ = {isa = PBXBuildFile; fileRef = 352F9DB2091E4F9600E440A6 /* PshTextbox.m */; };
+		352F9E0A091E59DF00E440A6 /* PshScrollViewExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 352F9E08091E59DF00E440A6 /* PshScrollViewExtension.m */; };
+		3541C3BB0903136D008D32FA /* ElementContainerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3541C3BA0903136D008D32FA /* ElementContainerView.m */; };
+		355082400905AEFA00627AE4 /* ElementLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3550823F0905AEFA00627AE4 /* ElementLabel.m */; };
+		35528F740930D62700C62A3D /* DragTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 35528F720930D62700C62A3D /* DragTextField.m */; };
+		3552900C0930DF9700C62A3D /* PshSaveBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = 3552900A0930DF9700C62A3D /* PshSaveBrowser.m */; };
+		355293120931E8D000C62A3D /* ButtonContainerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 355293110931E8D000C62A3D /* ButtonContainerView.m */; };
+		355294C309322C6F00C62A3D /* PshDefaultButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 355294C109322C6F00C62A3D /* PshDefaultButton.m */; };
+		355294E109322E3900C62A3D /* PshCancelButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 355294E009322E3900C62A3D /* PshCancelButton.m */; };
+		356164660930B862009D59D3 /* PshOpenBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = 356164640930B862009D59D3 /* PshOpenBrowser.m */; };
+		356165A50930C8AA009D59D3 /* FSBrowserButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 356165A30930C8AA009D59D3 /* FSBrowserButton.m */; };
+		3575F3580932873800B5AF9E /* dict.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3575F3570932873800B5AF9E /* dict.strings */; };
+		3575F5BA0932972700B5AF9E /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3575F5B90932972700B5AF9E /* Carbon.framework */; };
+		35B1F02C093248B700E7A53B /* PshButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 35B1F02B093248B700E7A53B /* PshButton.m */; };
+		35D106B3092BD61100FEA4BB /* PshPasswordField.m in Sources */ = {isa = PBXBuildFile; fileRef = 35D106B2092BD61100FEA4BB /* PshPasswordField.m */; };
+		35D10732092BE5DE00FEA4BB /* PshImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 35D10731092BE5DE00FEA4BB /* PshImage.m */; };
+		35E2AC8C09067997008E5E0B /* PshHLine.m in Sources */ = {isa = PBXBuildFile; fileRef = 35E2AC8B09067997008E5E0B /* PshHLine.m */; };
+		35F4278E093260E0001A1D68 /* PshImageViewExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 35F4278D093260E0001A1D68 /* PshImageViewExtension.m */; };
+		8D11072A0486CEB800E47090 /* MainMenu.nib in Resources */ = {isa = PBXBuildFile; fileRef = 29B97318FDCFA39411CA2CEA /* MainMenu.nib */; };
+		8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165CFE840E0CC02AAC07 /* InfoPlist.strings */; };
+		8D11072D0486CEB800E47090 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
+		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		089C165DFE840E0CC02AAC07 /* English */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
+		13E42FB307B3F0F600E4EEF1 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = /System/Library/Frameworks/CoreData.framework; sourceTree = "<absolute>"; };
+		22083B112065539900EA6FAD /* PshFilesystemBrowser.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = PshFilesystemBrowser.h; path = Elements/PshFilesystemBrowser.h; sourceTree = "<group>"; };
+		22083B122065539900EA6FAD /* PshFilesystemBrowser.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = PshFilesystemBrowser.m; path = Elements/PshFilesystemBrowser.m; sourceTree = "<group>"; };
+		22206BB419F13E1300FC1755 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		222085630C0C0BB600851864 /* PshDate.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = PshDate.h; path = Elements/PshDate.h; sourceTree = "<group>"; };
+		222085640C0C0BB600851864 /* PshDate.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = PshDate.m; path = Elements/PshDate.m; sourceTree = "<group>"; };
+		22248E5C188BF184004EA0D4 /* AppIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AppIcon.png; sourceTree = "<group>"; };
+		22248E5E188BF37B004EA0D4 /* AppIcon@2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AppIcon@2.png"; sourceTree = "<group>"; };
+		223CA1391469C652002ED89B /* CBMacros.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = CBMacros.c; sourceTree = SOURCE_ROOT; };
+		224F251D1996565800E8A28A /* NSImage+PshAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSImage+PshAdditions.h"; path = "Categories/NSImage+PshAdditions.h"; sourceTree = "<group>"; };
+		224F251E1996565800E8A28A /* NSImage+PshAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSImage+PshAdditions.m"; path = "Categories/NSImage+PshAdditions.m"; sourceTree = "<group>"; };
+		226F455C140D1FEE00671168 /* PshComboBoxCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PshComboBoxCell.h; sourceTree = "<group>"; };
+		226F455D140D1FEE00671168 /* PshComboBoxCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PshComboBoxCell.m; sourceTree = "<group>"; };
+		22794F9F140D03F10043D186 /* ClearButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClearButton.h; sourceTree = "<group>"; };
+		22794FA0140D03F10043D186 /* ClearButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClearButton.m; sourceTree = "<group>"; };
+		22A59D1019F6FB2B00268160 /* dialog-bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dialog-bg.png"; sourceTree = "<group>"; };
+		22C7CF37140D6AB9000474ED /* DatePicker+PshAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "DatePicker+PshAdditions.h"; path = "Categories/DatePicker+PshAdditions.h"; sourceTree = "<group>"; };
+		22C7CF38140D6AB9000474ED /* DatePicker+PshAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "DatePicker+PshAdditions.m"; path = "Categories/DatePicker+PshAdditions.m"; sourceTree = "<group>"; };
+		22CEEE2719F04D4800E1EFEA /* UIConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIConstants.h; sourceTree = "<group>"; };
+		22EE715819F0670B00D59652 /* AlertIcon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlertIcon.h; sourceTree = "<group>"; };
+		22EE715919F0670B00D59652 /* AlertIcon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlertIcon.m; sourceTree = "<group>"; };
+		22EE715B19F0756400D59652 /* PshElementProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PshElementProtocol.h; sourceTree = "<group>"; };
+		22EE715C19F0800900D59652 /* NSString+PshAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSString+PshAdditions.h"; path = "Categories/NSString+PshAdditions.h"; sourceTree = "<group>"; };
+		22EE715D19F0800900D59652 /* NSString+PshAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+PshAdditions.m"; path = "Categories/NSString+PshAdditions.m"; sourceTree = "<group>"; };
+		22EE715F19F1039600D59652 /* NSView+CBAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSView+CBAdditions.h"; path = "Categories/NSView+CBAdditions.h"; sourceTree = "<group>"; };
+		22EE716019F1039600D59652 /* NSView+CBAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSView+CBAdditions.m"; path = "Categories/NSView+CBAdditions.m"; sourceTree = "<group>"; };
+		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		29B97319FDCFA39411CA2CEA /* English */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = English; path = English.lproj/MainMenu.nib; sourceTree = "<group>"; };
+		29B97324FDCFA39411CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
+		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
+		32CA4F630368D1EE00C91783 /* Pashua_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Pashua_Prefix.pch; sourceTree = "<group>"; };
+		351B25670900EB3D00ED6EA5 /* AppController.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = AppController.h; sourceTree = "<group>"; };
+		351B25680900EB3D00ED6EA5 /* AppController.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = AppController.m; sourceTree = "<group>"; };
+		351B256E0900EB5D00ED6EA5 /* PshWindow.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = PshWindow.m; sourceTree = "<group>"; };
+		351B256F0900EB5D00ED6EA5 /* PshWindow.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = PshWindow.h; sourceTree = "<group>"; };
+		351B25870900ED9200ED6EA5 /* ConfigParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConfigParser.h; sourceTree = "<group>"; };
+		351B25880900ED9200ED6EA5 /* ConfigParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConfigParser.m; sourceTree = "<group>"; };
+		352F9C78091E43AB00E440A6 /* ElementFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ElementFactory.h; sourceTree = "<group>"; };
+		352F9C79091E43AB00E440A6 /* ElementFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ElementFactory.m; sourceTree = "<group>"; };
+		352F9D65091E4D3500E440A6 /* PshPopUpButtonExtension.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = PshPopUpButtonExtension.h; path = Categories/PshPopUpButtonExtension.h; sourceTree = "<group>"; };
+		352F9D66091E4D3500E440A6 /* PshPopUpButtonExtension.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = PshPopUpButtonExtension.m; path = Categories/PshPopUpButtonExtension.m; sourceTree = "<group>"; };
+		352F9D6A091E4D5300E440A6 /* PshMatrixExtension.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = PshMatrixExtension.m; path = Categories/PshMatrixExtension.m; sourceTree = "<group>"; };
+		352F9D6B091E4D5300E440A6 /* PshMatrixExtension.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = PshMatrixExtension.h; path = Categories/PshMatrixExtension.h; sourceTree = "<group>"; };
+		352F9D6C091E4D5300E440A6 /* PshButtonExtension.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = PshButtonExtension.m; path = Categories/PshButtonExtension.m; sourceTree = "<group>"; };
+		352F9D6D091E4D5300E440A6 /* PshButtonExtension.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = PshButtonExtension.h; path = Categories/PshButtonExtension.h; sourceTree = "<group>"; };
+		352F9D72091E4D7900E440A6 /* PshComboBox.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = PshComboBox.h; path = Elements/PshComboBox.h; sourceTree = "<group>"; };
+		352F9D73091E4D7900E440A6 /* PshComboBox.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = PshComboBox.m; path = Elements/PshComboBox.m; sourceTree = "<group>"; };
+		352F9D74091E4D7900E440A6 /* PshCheckbox.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = PshCheckbox.h; path = Elements/PshCheckbox.h; sourceTree = "<group>"; };
+		352F9D75091E4D7900E440A6 /* PshCheckbox.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = PshCheckbox.m; path = Elements/PshCheckbox.m; sourceTree = "<group>"; };
+		352F9D7A091E4D9900E440A6 /* PshPopup.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = PshPopup.m; path = Elements/PshPopup.m; sourceTree = "<group>"; };
+		352F9D7B091E4D9900E440A6 /* PshPopup.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = PshPopup.h; path = Elements/PshPopup.h; sourceTree = "<group>"; };
+		352F9D7C091E4D9900E440A6 /* PshHorizontalLine.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = PshHorizontalLine.h; path = Elements/PshHorizontalLine.h; sourceTree = "<group>"; };
+		352F9D7D091E4D9900E440A6 /* PshHorizontalLine.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = PshHorizontalLine.m; path = Elements/PshHorizontalLine.m; sourceTree = "<group>"; };
+		352F9D82091E4DB300E440A6 /* PshTextField.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = PshTextField.h; path = Elements/PshTextField.h; sourceTree = "<group>"; };
+		352F9D83091E4DB300E440A6 /* PshTextField.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = PshTextField.m; path = Elements/PshTextField.m; sourceTree = "<group>"; };
+		352F9D84091E4DB300E440A6 /* PshRadioButton.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = PshRadioButton.h; path = Elements/PshRadioButton.h; sourceTree = "<group>"; };
+		352F9D85091E4DB300E440A6 /* PshRadioButton.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = PshRadioButton.m; path = Elements/PshRadioButton.m; sourceTree = "<group>"; };
+		352F9DB2091E4F9600E440A6 /* PshTextbox.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = PshTextbox.m; path = Elements/PshTextbox.m; sourceTree = "<group>"; };
+		352F9DB3091E4F9600E440A6 /* PshTextbox.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = PshTextbox.h; path = Elements/PshTextbox.h; sourceTree = "<group>"; };
+		352F9E08091E59DF00E440A6 /* PshScrollViewExtension.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = PshScrollViewExtension.m; path = Categories/PshScrollViewExtension.m; sourceTree = "<group>"; };
+		352F9E09091E59DF00E440A6 /* PshScrollViewExtension.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = PshScrollViewExtension.h; path = Categories/PshScrollViewExtension.h; sourceTree = "<group>"; };
+		352F9E31091E684300E440A6 /* PshText.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = PshText.h; path = Elements/PshText.h; sourceTree = "<group>"; };
+		352F9E32091E684300E440A6 /* PshText.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = PshText.m; path = Elements/PshText.m; sourceTree = "<group>"; };
+		3541C3B90903136D008D32FA /* ElementContainerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ElementContainerView.h; sourceTree = "<group>"; };
+		3541C3BA0903136D008D32FA /* ElementContainerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ElementContainerView.m; sourceTree = "<group>"; };
+		3550823E0905AEFA00627AE4 /* ElementLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ElementLabel.h; sourceTree = "<group>"; };
+		3550823F0905AEFA00627AE4 /* ElementLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ElementLabel.m; sourceTree = "<group>"; };
+		35528F720930D62700C62A3D /* DragTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DragTextField.m; sourceTree = "<group>"; };
+		35528F730930D62700C62A3D /* DragTextField.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = DragTextField.h; sourceTree = "<group>"; };
+		3552900A0930DF9700C62A3D /* PshSaveBrowser.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = PshSaveBrowser.m; path = Elements/PshSaveBrowser.m; sourceTree = "<group>"; };
+		3552900B0930DF9700C62A3D /* PshSaveBrowser.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = PshSaveBrowser.h; path = Elements/PshSaveBrowser.h; sourceTree = "<group>"; };
+		355293100931E8D000C62A3D /* ButtonContainerView.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = ButtonContainerView.h; sourceTree = "<group>"; };
+		355293110931E8D000C62A3D /* ButtonContainerView.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = ButtonContainerView.m; sourceTree = "<group>"; };
+		355294C109322C6F00C62A3D /* PshDefaultButton.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = PshDefaultButton.m; path = Elements/PshDefaultButton.m; sourceTree = "<group>"; };
+		355294C209322C6F00C62A3D /* PshDefaultButton.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = PshDefaultButton.h; path = Elements/PshDefaultButton.h; sourceTree = "<group>"; };
+		355294DF09322E3900C62A3D /* PshCancelButton.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = PshCancelButton.h; path = Elements/PshCancelButton.h; sourceTree = "<group>"; };
+		355294E009322E3900C62A3D /* PshCancelButton.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = PshCancelButton.m; path = Elements/PshCancelButton.m; sourceTree = "<group>"; };
+		356164640930B862009D59D3 /* PshOpenBrowser.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = PshOpenBrowser.m; path = Elements/PshOpenBrowser.m; sourceTree = "<group>"; };
+		356164650930B862009D59D3 /* PshOpenBrowser.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = PshOpenBrowser.h; path = Elements/PshOpenBrowser.h; sourceTree = "<group>"; };
+		356165A30930C8AA009D59D3 /* FSBrowserButton.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = FSBrowserButton.m; sourceTree = "<group>"; };
+		356165A40930C8AA009D59D3 /* FSBrowserButton.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = FSBrowserButton.h; sourceTree = "<group>"; };
+		3575F349093286CB00B5AF9E /* English */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/dict.strings; sourceTree = "<group>"; };
+		3575F35B0932874000B5AF9E /* German */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = German; path = German.lproj/dict.strings; sourceTree = "<group>"; };
+		3575F35C0932874300B5AF9E /* French */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = French; path = French.lproj/dict.strings; sourceTree = "<group>"; };
+		3575F569093293F100B5AF9E /* German */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = German; path = German.lproj/MainMenu.nib; sourceTree = "<group>"; };
+		3575F56A093293F600B5AF9E /* French */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = French; path = French.lproj/MainMenu.nib; sourceTree = "<group>"; };
+		3575F5B90932972700B5AF9E /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = /System/Library/Frameworks/Carbon.framework; sourceTree = "<absolute>"; };
+		35B1F02A093248B700E7A53B /* PshButton.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = PshButton.h; path = Elements/PshButton.h; sourceTree = "<group>"; };
+		35B1F02B093248B700E7A53B /* PshButton.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = PshButton.m; path = Elements/PshButton.m; sourceTree = "<group>"; };
+		35D106B1092BD61100FEA4BB /* PshPasswordField.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = PshPasswordField.h; path = Elements/PshPasswordField.h; sourceTree = "<group>"; };
+		35D106B2092BD61100FEA4BB /* PshPasswordField.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = PshPasswordField.m; path = Elements/PshPasswordField.m; sourceTree = "<group>"; };
+		35D10730092BE5DE00FEA4BB /* PshImage.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = PshImage.h; path = Elements/PshImage.h; sourceTree = "<group>"; };
+		35D10731092BE5DE00FEA4BB /* PshImage.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = PshImage.m; path = Elements/PshImage.m; sourceTree = "<group>"; };
+		35E2AC8A09067997008E5E0B /* PshHLine.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = PshHLine.h; sourceTree = "<group>"; };
+		35E2AC8B09067997008E5E0B /* PshHLine.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = PshHLine.m; sourceTree = "<group>"; };
+		35F4278C093260E0001A1D68 /* PshImageViewExtension.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = PshImageViewExtension.h; path = Categories/PshImageViewExtension.h; sourceTree = "<group>"; };
+		35F4278D093260E0001A1D68 /* PshImageViewExtension.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = PshImageViewExtension.m; path = Categories/PshImageViewExtension.m; sourceTree = "<group>"; };
+		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		8D1107320486CEB800E47090 /* Pashua.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pashua.app; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		8D11072E0486CEB800E47090 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */,
+				3575F5BA0932972700B5AF9E /* Carbon.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		080E96DDFE201D6D7F000001 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				22EE715819F0670B00D59652 /* AlertIcon.h */,
+				22EE715919F0670B00D59652 /* AlertIcon.m */,
+				35E2ABED0906645B008E5E0B /* Categories */,
+				3541C31F09030863008D32FA /* Elements */,
+				351B25670900EB3D00ED6EA5 /* AppController.h */,
+				351B25680900EB3D00ED6EA5 /* AppController.m */,
+				22794F9F140D03F10043D186 /* ClearButton.h */,
+				22794FA0140D03F10043D186 /* ClearButton.m */,
+				351B25870900ED9200ED6EA5 /* ConfigParser.h */,
+				351B25880900ED9200ED6EA5 /* ConfigParser.m */,
+				35528F730930D62700C62A3D /* DragTextField.h */,
+				35528F720930D62700C62A3D /* DragTextField.m */,
+				356165A40930C8AA009D59D3 /* FSBrowserButton.h */,
+				356165A30930C8AA009D59D3 /* FSBrowserButton.m */,
+				355293100931E8D000C62A3D /* ButtonContainerView.h */,
+				355293110931E8D000C62A3D /* ButtonContainerView.m */,
+				226F455C140D1FEE00671168 /* PshComboBoxCell.h */,
+				226F455D140D1FEE00671168 /* PshComboBoxCell.m */,
+				352F9C78091E43AB00E440A6 /* ElementFactory.h */,
+				352F9C79091E43AB00E440A6 /* ElementFactory.m */,
+				3541C3B90903136D008D32FA /* ElementContainerView.h */,
+				3541C3BA0903136D008D32FA /* ElementContainerView.m */,
+				3550823E0905AEFA00627AE4 /* ElementLabel.h */,
+				3550823F0905AEFA00627AE4 /* ElementLabel.m */,
+				22EE715B19F0756400D59652 /* PshElementProtocol.h */,
+				35E2AC8A09067997008E5E0B /* PshHLine.h */,
+				35E2AC8B09067997008E5E0B /* PshHLine.m */,
+				351B256F0900EB5D00ED6EA5 /* PshWindow.h */,
+				351B256E0900EB5D00ED6EA5 /* PshWindow.m */,
+				22CEEE2719F04D4800E1EFEA /* UIConstants.h */,
+			);
+			name = Classes;
+			sourceTree = "<group>";
+		};
+		1058C7A0FEA54F0111CA2CBB /* Linked Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				3575F5B90932972700B5AF9E /* Carbon.framework */,
+				1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */,
+			);
+			name = "Linked Frameworks";
+			sourceTree = "<group>";
+		};
+		1058C7A2FEA54F0111CA2CBB /* Other Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				29B97324FDCFA39411CA2CEA /* AppKit.framework */,
+				13E42FB307B3F0F600E4EEF1 /* CoreData.framework */,
+				29B97325FDCFA39411CA2CEA /* Foundation.framework */,
+			);
+			name = "Other Frameworks";
+			sourceTree = "<group>";
+		};
+		19C28FACFE9D520D11CA2CBB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				8D1107320486CEB800E47090 /* Pashua.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		29B97314FDCFA39411CA2CEA /* Pashua */ = {
+			isa = PBXGroup;
+			children = (
+				080E96DDFE201D6D7F000001 /* Classes */,
+				29B97315FDCFA39411CA2CEA /* Other Sources */,
+				29B97317FDCFA39411CA2CEA /* Resources */,
+				29B97323FDCFA39411CA2CEA /* Frameworks */,
+				19C28FACFE9D520D11CA2CBB /* Products */,
+			);
+			name = Pashua;
+			sourceTree = "<group>";
+		};
+		29B97315FDCFA39411CA2CEA /* Other Sources */ = {
+			isa = PBXGroup;
+			children = (
+				32CA4F630368D1EE00C91783 /* Pashua_Prefix.pch */,
+				223CA1391469C652002ED89B /* CBMacros.c */,
+				29B97316FDCFA39411CA2CEA /* main.m */,
+			);
+			name = "Other Sources";
+			sourceTree = "<group>";
+		};
+		29B97317FDCFA39411CA2CEA /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				22A59D1019F6FB2B00268160 /* dialog-bg.png */,
+				22206BB419F13E1300FC1755 /* Images.xcassets */,
+				22248E5C188BF184004EA0D4 /* AppIcon.png */,
+				22248E5E188BF37B004EA0D4 /* AppIcon@2.png */,
+				3575F3570932873800B5AF9E /* dict.strings */,
+				8D1107310486CEB800E47090 /* Info.plist */,
+				089C165CFE840E0CC02AAC07 /* InfoPlist.strings */,
+				29B97318FDCFA39411CA2CEA /* MainMenu.nib */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1058C7A0FEA54F0111CA2CBB /* Linked Frameworks */,
+				1058C7A2FEA54F0111CA2CBB /* Other Frameworks */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		3541C31F09030863008D32FA /* Elements */ = {
+			isa = PBXGroup;
+			children = (
+				35B1F02A093248B700E7A53B /* PshButton.h */,
+				35B1F02B093248B700E7A53B /* PshButton.m */,
+				355294DF09322E3900C62A3D /* PshCancelButton.h */,
+				355294E009322E3900C62A3D /* PshCancelButton.m */,
+				352F9D74091E4D7900E440A6 /* PshCheckbox.h */,
+				352F9D75091E4D7900E440A6 /* PshCheckbox.m */,
+				352F9D72091E4D7900E440A6 /* PshComboBox.h */,
+				352F9D73091E4D7900E440A6 /* PshComboBox.m */,
+				222085630C0C0BB600851864 /* PshDate.h */,
+				222085640C0C0BB600851864 /* PshDate.m */,
+				355294C209322C6F00C62A3D /* PshDefaultButton.h */,
+				355294C109322C6F00C62A3D /* PshDefaultButton.m */,
+				22083B112065539900EA6FAD /* PshFilesystemBrowser.h */,
+				22083B122065539900EA6FAD /* PshFilesystemBrowser.m */,
+				352F9D7C091E4D9900E440A6 /* PshHorizontalLine.h */,
+				352F9D7D091E4D9900E440A6 /* PshHorizontalLine.m */,
+				35D10730092BE5DE00FEA4BB /* PshImage.h */,
+				35D10731092BE5DE00FEA4BB /* PshImage.m */,
+				356164650930B862009D59D3 /* PshOpenBrowser.h */,
+				356164640930B862009D59D3 /* PshOpenBrowser.m */,
+				35D106B1092BD61100FEA4BB /* PshPasswordField.h */,
+				35D106B2092BD61100FEA4BB /* PshPasswordField.m */,
+				352F9D7B091E4D9900E440A6 /* PshPopup.h */,
+				352F9D7A091E4D9900E440A6 /* PshPopup.m */,
+				352F9D84091E4DB300E440A6 /* PshRadioButton.h */,
+				352F9D85091E4DB300E440A6 /* PshRadioButton.m */,
+				3552900B0930DF9700C62A3D /* PshSaveBrowser.h */,
+				3552900A0930DF9700C62A3D /* PshSaveBrowser.m */,
+				352F9E31091E684300E440A6 /* PshText.h */,
+				352F9E32091E684300E440A6 /* PshText.m */,
+				352F9DB3091E4F9600E440A6 /* PshTextbox.h */,
+				352F9DB2091E4F9600E440A6 /* PshTextbox.m */,
+				352F9D82091E4DB300E440A6 /* PshTextField.h */,
+				352F9D83091E4DB300E440A6 /* PshTextField.m */,
+			);
+			name = Elements;
+			sourceTree = "<group>";
+		};
+		35E2ABED0906645B008E5E0B /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				22EE715F19F1039600D59652 /* NSView+CBAdditions.h */,
+				22EE716019F1039600D59652 /* NSView+CBAdditions.m */,
+				224F251D1996565800E8A28A /* NSImage+PshAdditions.h */,
+				224F251E1996565800E8A28A /* NSImage+PshAdditions.m */,
+				22C7CF37140D6AB9000474ED /* DatePicker+PshAdditions.h */,
+				22C7CF38140D6AB9000474ED /* DatePicker+PshAdditions.m */,
+				35F4278C093260E0001A1D68 /* PshImageViewExtension.h */,
+				35F4278D093260E0001A1D68 /* PshImageViewExtension.m */,
+				352F9D6B091E4D5300E440A6 /* PshMatrixExtension.h */,
+				352F9D6A091E4D5300E440A6 /* PshMatrixExtension.m */,
+				352F9D6D091E4D5300E440A6 /* PshButtonExtension.h */,
+				352F9D6C091E4D5300E440A6 /* PshButtonExtension.m */,
+				352F9D65091E4D3500E440A6 /* PshPopUpButtonExtension.h */,
+				352F9D66091E4D3500E440A6 /* PshPopUpButtonExtension.m */,
+				352F9E09091E59DF00E440A6 /* PshScrollViewExtension.h */,
+				352F9E08091E59DF00E440A6 /* PshScrollViewExtension.m */,
+				22EE715C19F0800900D59652 /* NSString+PshAdditions.h */,
+				22EE715D19F0800900D59652 /* NSString+PshAdditions.m */,
+			);
+			name = Categories;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		8D1107260486CEB800E47090 /* Pashua */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 351B255C0900EAF100ED6EA5 /* Build configuration list for PBXNativeTarget "Pashua" */;
+			buildPhases = (
+				22D6C96619D018CC0021288C /* ShellScript */,
+				8D1107290486CEB800E47090 /* Resources */,
+				8D11072C0486CEB800E47090 /* Sources */,
+				8D11072E0486CEB800E47090 /* Frameworks */,
+				2207E14D13194F8C00C140FA /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Pashua;
+			productInstallPath = "$(HOME)/Applications";
+			productName = Pashua;
+			productReference = 8D1107320486CEB800E47090 /* Pashua.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		29B97313FDCFA39411CA2CEA /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0920;
+				ORGANIZATIONNAME = "Carsten Blüm";
+			};
+			buildConfigurationList = 351B25600900EAF100ED6EA5 /* Build configuration list for PBXProject "Pashua" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 1;
+			knownRegions = (
+				English,
+				Japanese,
+				French,
+				German,
+			);
+			mainGroup = 29B97314FDCFA39411CA2CEA /* Pashua */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				8D1107260486CEB800E47090 /* Pashua */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		8D1107290486CEB800E47090 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				22206BB519F13E1300FC1755 /* Images.xcassets in Resources */,
+				8D11072A0486CEB800E47090 /* MainMenu.nib in Resources */,
+				8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */,
+				3575F3580932873800B5AF9E /* dict.strings in Resources */,
+				22248E5D188BF184004EA0D4 /* AppIcon.png in Resources */,
+				22248E5F188BF37B004EA0D4 /* AppIcon@2.png in Resources */,
+				22A59D1119F6FB2B00268160 /* dialog-bg.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		2207E14D13194F8C00C140FA /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 12;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/bash;
+			shellScript = "if [ -e \"$PROJECT_DIR/../bin/finalize.sh\" ]\nthen\n    \"$PROJECT_DIR/../bin/finalize.sh\" \"$PROJECT_DIR\" \"$PRODUCT_NAME\" \"$CONFIGURATION\" \"$TARGET_BUILD_DIR\"\nfi\n";
+		};
+		22D6C96619D018CC0021288C /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "KEYWORDS=\"TODO:|FIXME:\"\nfind \"${SRCROOT}\" \\( -name \"*.h\" -or -name \"*.m\" \\) -print0 | \\\nxargs -0 egrep --with-filename --line-number --only-matching \"($KEYWORDS).*\\$\" | \\\nperl -p -e \"s/($KEYWORDS)/ warning: \\$1/\"";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		8D11072C0486CEB800E47090 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				22EE715A19F0670B00D59652 /* AlertIcon.m in Sources */,
+				8D11072D0486CEB800E47090 /* main.m in Sources */,
+				351B25690900EB3D00ED6EA5 /* AppController.m in Sources */,
+				351B25700900EB5D00ED6EA5 /* PshWindow.m in Sources */,
+				351B25890900ED9200ED6EA5 /* ConfigParser.m in Sources */,
+				3541C3BB0903136D008D32FA /* ElementContainerView.m in Sources */,
+				355082400905AEFA00627AE4 /* ElementLabel.m in Sources */,
+				35E2AC8C09067997008E5E0B /* PshHLine.m in Sources */,
+				352F9C7A091E43AB00E440A6 /* ElementFactory.m in Sources */,
+				352F9D67091E4D3500E440A6 /* PshPopUpButtonExtension.m in Sources */,
+				22EE716119F1039600D59652 /* NSView+CBAdditions.m in Sources */,
+				352F9D6E091E4D5300E440A6 /* PshMatrixExtension.m in Sources */,
+				352F9D6F091E4D5300E440A6 /* PshButtonExtension.m in Sources */,
+				352F9D76091E4D7900E440A6 /* PshComboBox.m in Sources */,
+				352F9D77091E4D7900E440A6 /* PshCheckbox.m in Sources */,
+				352F9D7E091E4D9900E440A6 /* PshPopup.m in Sources */,
+				352F9D7F091E4D9900E440A6 /* PshHorizontalLine.m in Sources */,
+				352F9D86091E4DB300E440A6 /* PshTextField.m in Sources */,
+				352F9D87091E4DB300E440A6 /* PshRadioButton.m in Sources */,
+				352F9DB4091E4F9600E440A6 /* PshTextbox.m in Sources */,
+				352F9E0A091E59DF00E440A6 /* PshScrollViewExtension.m in Sources */,
+				35D106B3092BD61100FEA4BB /* PshPasswordField.m in Sources */,
+				35D10732092BE5DE00FEA4BB /* PshImage.m in Sources */,
+				356164660930B862009D59D3 /* PshOpenBrowser.m in Sources */,
+				356165A50930C8AA009D59D3 /* FSBrowserButton.m in Sources */,
+				35528F740930D62700C62A3D /* DragTextField.m in Sources */,
+				3552900C0930DF9700C62A3D /* PshSaveBrowser.m in Sources */,
+				355293120931E8D000C62A3D /* ButtonContainerView.m in Sources */,
+				355294C309322C6F00C62A3D /* PshDefaultButton.m in Sources */,
+				355294E109322E3900C62A3D /* PshCancelButton.m in Sources */,
+				35B1F02C093248B700E7A53B /* PshButton.m in Sources */,
+				35F4278E093260E0001A1D68 /* PshImageViewExtension.m in Sources */,
+				22083B132065539900EA6FAD /* PshFilesystemBrowser.m in Sources */,
+				225DD2871392FC0E005F9CE1 /* PshText.m in Sources */,
+				22794FA1140D03F10043D186 /* ClearButton.m in Sources */,
+				226F455E140D1FEE00671168 /* PshComboBoxCell.m in Sources */,
+				22C7CF39140D6AB9000474ED /* DatePicker+PshAdditions.m in Sources */,
+				223CA13A1469C652002ED89B /* CBMacros.c in Sources */,
+				223CA17F1469C8F4002ED89B /* PshDate.m in Sources */,
+				22EE715E19F0800900D59652 /* NSString+PshAdditions.m in Sources */,
+				224F251F1996565800E8A28A /* NSImage+PshAdditions.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		089C165CFE840E0CC02AAC07 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				089C165DFE840E0CC02AAC07 /* English */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		29B97318FDCFA39411CA2CEA /* MainMenu.nib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				29B97319FDCFA39411CA2CEA /* English */,
+				3575F569093293F100B5AF9E /* German */,
+				3575F56A093293F600B5AF9E /* French */,
+			);
+			name = MainMenu.nib;
+			sourceTree = "<group>";
+		};
+		3575F3570932873800B5AF9E /* dict.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3575F349093286CB00B5AF9E /* English */,
+				3575F35B0932874000B5AF9E /* German */,
+				3575F35C0932874300B5AF9E /* French */,
+			);
+			name = dict.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		351B255D0900EAF100ED6EA5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = Pashua_Prefix.pch;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = Info.plist;
+				INSTALL_PATH = "$(HOME)/Applications";
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				ONLY_ACTIVE_ARCH = YES;
+				PREBINDING = NO;
+				PRODUCT_NAME = Pashua;
+				SDKROOT = macosx;
+				VALID_ARCHS = "i386 x86_64";
+				WRAPPER_EXTENSION = app;
+				ZERO_LINK = YES;
+			};
+			name = Debug;
+		};
+		351B255E0900EAF100ED6EA5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = YES;
+				GCC_ENABLE_CPP_EXCEPTIONS = YES;
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = Pashua_Prefix.pch;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = Info.plist;
+				INSTALL_PATH = "$(HOME)/Applications";
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				ONLY_ACTIVE_ARCH = NO;
+				PREBINDING = NO;
+				PRODUCT_NAME = Pashua;
+				SDKROOT = macosx;
+				VALID_ARCHS = "i386 x86_64";
+				WRAPPER_EXTENSION = app;
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
+		351B255F0900EAF100ED6EA5 /* Default */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = Pashua_Prefix.pch;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = Info.plist;
+				INSTALL_PATH = "$(HOME)/Applications";
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				ONLY_ACTIVE_ARCH = NO;
+				PRODUCT_NAME = Pashua;
+				SDKROOT = macosx;
+				VALID_ARCHS = "i386 x86_64";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Default;
+		};
+		351B25610900EAF100ED6EA5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_LINK_OBJC_RUNTIME = NO;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = s;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_CFLAGS = "-DDEBUG=1";
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		351B25620900EAF100ED6EA5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_LINK_OBJC_RUNTIME = NO;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = s;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				OTHER_CFLAGS = "";
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		351B25630900EAF100ED6EA5 /* Default */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_LINK_OBJC_RUNTIME = NO;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = s;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				OTHER_CFLAGS = "";
+				SDKROOT = macosx;
+			};
+			name = Default;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		351B255C0900EAF100ED6EA5 /* Build configuration list for PBXNativeTarget "Pashua" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				351B255D0900EAF100ED6EA5 /* Debug */,
+				351B255E0900EAF100ED6EA5 /* Release */,
+				351B255F0900EAF100ED6EA5 /* Default */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Default;
+		};
+		351B25600900EAF100ED6EA5 /* Build configuration list for PBXProject "Pashua" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				351B25610900EAF100ED6EA5 /* Debug */,
+				351B25620900EAF100ED6EA5 /* Release */,
+				351B25630900EAF100ED6EA5 /* Default */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Default;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 29B97313FDCFA39411CA2CEA /* Project object */;
+}

@@ -1,0 +1,50 @@
+
+#ifdef __OBJC__
+    #import <Cocoa/Cocoa.h>
+#endif
+
+#import "CBMacros.c"
+
+// Development constants
+#define DEBUG_VERBOSE_RECTS 0
+
+// Arbitrary value
+#define BUTTON_CLOSING_TAG 7823
+
+// Exception constants
+#define EXC_CONFIG @"Configuration error"
+
+// Default values
+#define DEFAULT_TITLE @"Pashua"
+#define DEFAULT_ALPHA 1.0
+
+// Configuration string constants
+#define CFG_ATTRSEP @"."
+#define CFG_GLOBAL @"*"
+
+// Localization strings: Words
+#define WRD_OK NSLocalizedStringFromTable(@"OK", @"dict", @"Button title for default button")
+#define WRD_ERROR NSLocalizedStringFromTable(@"Error", @"dict", @"Word 'Error'")
+#define WRD_CANCEL NSLocalizedStringFromTable(@"Cancel", @"dict", @"Word 'Cancel'")
+#define WRD_CHOOSE NSLocalizedStringFromTable(@"Choose", @"dict", @"Word 'Choose'")
+#define WRD_CLEAR NSLocalizedStringFromTable(@"Clear", @"dict", @"Word 'Clear'")
+#define WRD_CHOOSE_ELLIPS NSLocalizedStringFromTable(@"Choose...", @"dict", @"Word 'Choose...'")
+
+// Localization strings: Phrases
+#define PHR_CFGENCODING NSLocalizedStringFromTable(@"Cfg encoding err", @"dict", @"Err msg: Config file encoding problem")
+#define PHR_CFGIMGNOPATH NSLocalizedStringFromTable(@"Cfg image no path type", @"dict", @"Error msg: Image has no 'path' attribute")
+#define PHR_CFGINVLDTYPE NSLocalizedStringFromTable(@"Cfg invalid type", @"dict", @"Error msg: Invalid element type")
+#define PHR_CFGLACKOPTNS NSLocalizedStringFromTable(@"Cfg lacks options", @"dict", @"Error msg: Missing 'option' attributes")
+#define PHR_CFGLACKLABEL NSLocalizedStringFromTable(@"Cfg lacks label", @"dict", @"Error msg: Missing 'label' attribute")
+#define PHR_CFGLACKTEXT NSLocalizedStringFromTable(@"Cfg lacks default or text", @"dict", @"Error msg: Missing 'default' or 'text' attributes")
+#define PHR_CFGLACKTYPE NSLocalizedStringFromTable(@"Cfg lacks type", @"dict", @"Err msg: Missing 'type' attribute")
+#define PHR_CFGLACKXORY NSLocalizedStringFromTable(@"Cfg lacks x or y", @"dict", @"Error msg: x and y attributes both must be provided")
+#define PHR_CFGNOELEMENTS NSLocalizedStringFromTable(@"Cfg no elements", @"dict", @"Err msg: Config file has no elements")
+#define PHR_CFGPOSATTRCONFL NSLocalizedStringFromTable(@"Position attributes conflict", @"dict", @"Err msg: Window attributes are conflicting")
+#define PHR_CFGPATHINVALID NSLocalizedStringFromTable(@"Cfg path invalid", @"dict", @"Err msg: Config file path does not exist")
+#define PHR_CFGPATHMISSING NSLocalizedStringFromTable(@"Cfg path missing", @"dict", @"Err msg: No config file path given")
+#define PHR_CFGPATHNOREAD NSLocalizedStringFromTable(@"Cfg path noread", @"dict", @"Err msg: Config file path is not readable")
+#define PHR_CFGRELYTOOSMALL NSLocalizedStringFromTable(@"Cfg rely too small", @"dict", @"Error msg: Attr. 'rely' is too small")
+#define PHR_CFGSTRANGELINE NSLocalizedStringFromTable(@"Cfg strange line", @"dict", @"Err msg: Don't know what to do with this line")
+#define PHR_IMGINVALID NSLocalizedStringFromTable(@"Image path is invalid", @"dict", @"Error msg: Image path is invalid")
+#define PHR_INVLDENC NSLocalizedStringFromTable(@"Encoding argument invalid", @"dict", @"Error msg: Invalid / unknown encoding")
