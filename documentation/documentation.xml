@@ -1,0 +1,1608 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.3//EN"
+"http://www.oasis-open.org/docbook/xml/4.3/docbookx.dtd" [
+<!ENTITY relxdef "<row><entry><literal>relx</literal></entry><entry>Horizontal offset, relative to the position the element would have if <literal>relx</literal> was not used (e.g.: <literal>relx</literal> specifies the distance from the left window border). Any integer can be used as <literal>relx</literal> value.</entry><entry>No</entry><entry>0</entry></row>">
+<!ENTITY relydef "<row><entry><literal>rely</literal></entry><entry>Relative vertical distance to the next element below (“relative” means that the value is added to the default distance). Any integer larger than -20 can be used as <literal>rely</literal> value.</entry><entry>No</entry><entry>0</entry></row>">
+<!ENTITY xdef "<row><entry><literal>x</literal></entry><entry>Absolute horizontal position in the window, measured from the left border of the content area</entry><entry>No</entry><entry>–</entry></row>">
+<!ENTITY ydef "<row><entry><literal>y</literal></entry><entry>Absolute vertical position in the window, measured from the <emphasis>lower</emphasis> border of the content area</entry><entry>No</entry><entry>–</entry></row>">
+<!ENTITY placeholder "<row><entry><literal>placeholder</literal></entry><entry>If present, this string will be as the field’s placeholder string.</entry><entry>No</entry><entry>–</entry></row>">
+<!ENTITY tooltip "<row><entry><literal>tooltip</literal></entry><entry>String to use as tooltip for the button. Use <code>\n</code> to insert a linebreak.</entry><entry>No</entry><entry>–</entry></row>">
+<!ENTITY label "<row><entry><literal>label</literal></entry><entry>Creates a label above this element</entry><entry>No</entry><entry>–</entry></row>">
+<!ENTITY defaultwidth "280">
+]>
+<book>
+	<title>Pashua Documentation</title>
+
+	<chapter id="chapter.introduction">
+		<title>Introduction</title>
+
+		<section id="sect.whatis">
+			<title>What is Pashua?</title>
+			<para>Pashua ist a tool for creating native dialog windows on macOS. It can be invoked from the shell / Terminal and therefore is particularly useful for creating GUIs from programming languages that do not offer graphic user interfaces natively, for instance PHP or Python.</para>
+            <para>Pashua was written by <ulink url="https://www.bluem.net/">Carsten Blüm</ulink> and released as Open Source software under the 3-Clause BSD License. Being Open Source, it is of course free to use, but nonetheless, <ulink url="https://www.bluem.net/jump/donations/">donations</ulink> are welcome. Pashua’s website is <ulink url="https://www.bluem.net/en/projects/pashua/">www.bluem.net/en/projects/pashua/</ulink>.</para>
+		</section>
+
+		<section id="sect.usage">
+			<title>Usage overview</title>
+
+			<section>
+				<title>Creating a dialog</title>
+				<para>Basically, Pashua is used like many command-line programs: you call it from your application and pass the path to a configuration file as argument (or let Pashua read the configuration string from stdin by passing <literal>-</literal> as the filename). Pashua will display a dialog that is created according to the description in the <link linkend="chapter.configuration">configuration file / string</link>, while typically your application will wait for the dialog to close.</para>
+			</section>
+
+			<section>
+				<title>Getting values back from Pashua</title>
+				<para>Pashua will quit when the user clicks the “OK” button (or presses the Return key), clicks the “Cancel” button or hits Escape (provided there is a <link linkend="element.cancelbutton">cancelbutton</link> in the window). In the first case, for every element defined in the dialog configuration, the value is returned. Let’s say, the window contains a <link linkend="element.textfield">textfield</link> named <literal>city</literal> that holds the string “Hamburg”, then the result (written to stdout by Pashua) would contain a line <literal>city=Hamburg</literal>. Your application could read Pashua’s output and parse each of the lines to get the value for the element.</para>
+				<para>In the latter case (“Cancel” button), no values are returned, except the cancel button itself, which is returned as 1. This means: if your configuration string contains a definition like <literal>cb.type = cancelbutton</literal> and the button will be pressed, then Pashua’s output will contain <literal>cb=1</literal>.</para>
+			</section>
+
+			<section>
+				<title>Using the example scripts</title>
+				<para>However, you don’t have to deal with calling Pashua and interpreting the result manually – the example scripts included in the distribution do that for you. In most of these scripts, you only have to pass the configuration string to a function or method and that’s it.</para>
+				<para>Of course, if you have special needs or don’t like the way the example scripts work, you are free to write your own code; it’s completely up to you.</para>
+			</section>
+		</section>
+	</chapter>
+
+	<chapter id="chapter.configuration">
+		<title>The window configuration</title>
+
+		<para>As mentioned above, the dialog window to be created is described in a configuration file or string. For this purpose, Pashua uses a very simple and light-weight configuration syntax which describes the GUI elements to display, their properties (e.g. default values) und their order in the window.</para>
+
+		<para>The following part of the documentation will describe the basics of the configuration syntax, the GUI elements available and the attributes that can be set for these elements.</para>
+
+		<section id="sect.basics">
+			<title>Basic configuration syntax rules</title>
+
+			<para>Pashua’s configuration syntax is pretty simple. Basic rules are:</para>
+
+			<itemizedlist>
+				<listitem>
+					<para>Empty lines are ignored.</para>
+				</listitem>
+
+				<listitem>
+					<para>Lines starting with the hash symbol <literal>#</literal> are treated as comments, like in Perl, Shell, PHP, Python, Ruby, Tcl, probably a few other languages and many Unix configuration files.</para>
+				</listitem>
+
+				<listitem>
+					<para>Every command must be on its own line.</para>
+				</listitem>
+
+				<listitem>
+				<para>Every command consists of: a string (called “identifier” below), followed by an equal sign <literal>=</literal>, followed by another string. The only exception to this rule is: a line consisting of nothing but a hyphen <literal>-</literal> will create a horizontal separator line at the appropriate position in the window.</para>
+				</listitem>
+
+				<listitem>
+				<para>Every “identifier” must consist of a unique name for a GUI element (any ASCII string, preferably all lowercase – please note that window attributes must use an asterisk <literal>*</literal> as that name, see <link linkend="element.window">window attributes</link>), followed by a period, followed by an attribute name. Each type of GUI element has its own set of allowed attributes, and a large part of this documentation deals with those properties. The name for the GUI element is not only a string that is used internally by Pashua, but it will also be used for returning values to the calling script / application, so you should regard these names as some sort of variable names.</para>
+				</listitem>
+
+				<listitem>
+					<para>Anything after the equal sign is considered the value.</para>
+				</listitem>
+
+				<listitem>
+					<para>Attributes and the names of the element types are case-sensitive.</para>
+				</listitem>
+
+				<listitem>
+					<para>Leading and trailing whitespace is ignored for both the identifier and the value. For instance, for Pashua the following two lines would be the same:</para>
+					<informalexample>
+						<programlisting>name.label=Please enter your name
+name.label  =	 Please enter your name</programlisting>
+					</informalexample>
+				</listitem>
+
+				<listitem>
+					<para>The GUI elements are displayed in the order in which they appear in the config string. The only exception to this rule are buttons: the default button is always in the lower right corner of the window, the cancel button (if defined) is located left to the default button and any other buttons will appear in the lower left corner, from left to right, in the order they were defined.</para>
+				</listitem>
+
+				<listitem>
+					<para>You don’t have to specify attributes in consecutive blocks. You can add as many empty lines as you like, and you could even mix up commands of different elements.</para>
+				</listitem>
+
+				<listitem>
+					<para>When an attribute is specified more than once, the last one will be used:</para>
+
+					<informalexample>
+						<programlisting>x.label = Label A
+x.label = Label B
+x.label = Label C</programlisting>
+					</informalexample>
+
+					<para>… would result in the element being labeled with “Label C”. An exception to this rule is <literal>option</literal>, which is used to set values for <link linkend="element.radiobutton">radiobuttons</link>, <link linkend="element.combobox">combo boxes</link> and <link linkend="element.popup">popups</link> and which may be used in multiple commands.</para>
+				</listitem>
+			</itemizedlist>
+
+			<section>
+				<title>A first example</title>
+
+				<para>Let’s have a look at a simple example:</para>
+
+				<informalexample>
+					<programlisting># Add a text field
+tx.type = textfield
+tx.label = Example textfield
+tx.default = Textfield content
+tx.width = 310</programlisting>
+				</informalexample>
+
+				<para>These lines would simply mean:</para>
+
+				<itemizedlist>
+					<listitem>
+						<para>Line 1: A comment</para>
+					</listitem>
+
+					<listitem>
+						<para>Line 2: The window should contain a textfield that we simply call “tx” to be able to address it in the next lines and to get the returned value later on.</para>
+					</listitem>
+
+					<listitem>
+						<para>Line 3: The textfield should be titled “Example textfield”.</para>
+					</listitem>
+
+					<listitem>
+						<para>Line 4: Set the initial text displayed in the textfield to “Textfield content”.</para>
+					</listitem>
+
+					<listitem>
+						<para>Line 5: Set the textfield’s width to 310 Pixels.</para>
+					</listitem>
+				</itemizedlist>
+
+				<para>The above lines would suffice to display the following window:</para>
+
+				<graphic fileref="images/window.simple.png" />
+
+				<para>Or, if you like to keep things <emphasis>really</emphasis> simple, the dialog configuration …</para>
+
+				<informalexample>
+					<programlisting>tx.type = textfield</programlisting>
+				</informalexample>
+
+				<para>… would result in this window:</para>
+
+				<graphic fileref="images/window.simplest.png" />
+
+				<para><emphasis>Note:</emphasis> Pashua uses the standard UI elements of the macOS / OS X version on which it is running. All the screenshots in this documentation were taken on macOS 10.12; if, for instance, you would run the examples on OS X 10.9, you would therefore see the older, less flat window and button look.</para>
+			</section>
+		</section>
+
+		<section id="element.window">
+			<title>Window attributes</title>
+
+			<para>Window attributes are defined similar to element attributes. The only difference (apart from the fact that of course windows have other attributes than, let’s say, <link linkend="element.textfield">textfields</link>) is the fact that you don’t have to specify an element name before the attribute, but simply an asterisk, for instance <literal>*.title = My windowtitle</literal></para>
+
+			<table>
+				<title>Window attributes</title>
+
+				<tgroup cols="5">
+					<thead>
+						<row>
+							<entry>Name</entry>
+							<entry>Purpose</entry>
+							<entry>Required</entry>
+							<entry>Default</entry>
+						</row>
+					</thead>
+
+					<tbody>
+
+						<row>
+							<entry><literal>appearance</literal></entry>
+							<entry>Only allowed value is <literal>metal</literal>, which will create a “brushed metal” window</entry>
+							<entry>No</entry>
+							<entry>-</entry>
+						</row>
+
+						<row>
+							<entry><literal>autoclosetime</literal></entry>
+							<entry>If set to an integer number larger than 1, the dialog will automatically close after the specified number of seconds have passed. The timer starts in the very moment when Pashua has finished parsing the configuration string and everything is set up.</entry>
+							<entry>No</entry>
+							<entry>-</entry>
+						</row>
+
+						<row>
+							<entry><literal>autosavekey</literal></entry>
+							<entry>Can be used to preserve the window position between launches. To let Pashua differentiate between applications, you have to set this to an arbitrary string. I.e.: one application can set this to “abc” and another one to “def”, and for both applications, the window position will be saved and restored separately.</entry>
+							<entry>No</entry>
+							<entry>-</entry>
+						</row>
+
+						<row>
+							<entry><literal>floating</literal></entry>
+							<entry>Setting <varname>floating</varname> to 1 will result in the window floating above other windows.</entry>
+							<entry>No</entry>
+							<entry>0</entry>
+						</row>
+
+						<row>
+							<entry><literal>title</literal></entry>
+							<entry>Sets the window title</entry>
+							<entry>No</entry>
+							<entry>Pashua</entry>
+						</row>
+
+						<row>
+							<entry><literal>transparency</literal></entry>
+							<entry>Sets the window’s transparency, decimal value from 0 (invisible) to 1 (opaque)</entry>
+							<entry>No</entry>
+							<entry>1</entry>
+						</row>
+
+						<row>
+							<entry><literal>x</literal></entry>
+							<entry>Sets the horizontal position where the window should be opened on the screen (0 is the left border of the screen)</entry>
+							<entry>No</entry>
+							<entry>Window will be positioned automatically</entry>
+						</row>
+
+						<row>
+							<entry><literal>y</literal></entry>
+							<entry>Sets the vertical position where the window should be opened on the screen (0 is the upper border of the screen)</entry>
+							<entry>No</entry>
+							<entry>Window will be positioned automatically</entry>
+						</row>
+					</tbody>
+				</tgroup>
+			</table>
+
+			<example>
+				<title>Example: Setting window attributes</title>
+
+				<programlisting>*.title = A window title
+*.transparency = 0.95
+*.x = 50
+*.y = 60</programlisting>
+			</example>
+
+			<graphic fileref="images/example.window.png" />
+		</section>
+
+		<section id="element.button">
+			<title>Element type: <literal>button</literal></title>
+
+		<para>A button works similar to the <link linkend="element.defaultbutton">default button</link>: when clicked, it closes the window and returns all elements’ values, but additionally, the button’s own value is returned as 1. Buttons (“regular” buttons, not the cancel button or the default button) are always positioned in the lower left area of the window, though you can position them absolutely using attributes <literal>x</literal> and <literal>y</literal></para>
+
+			<table>
+				<title>Attributes for elements of type <literal>button</literal></title>
+
+				<tgroup cols="4">
+					<thead>
+						<row>
+							<entry>Name</entry>
+							<entry>Purpose</entry>
+							<entry>Required</entry>
+							<entry>Default</entry>
+						</row>
+					</thead>
+
+					<tbody>
+						<row>
+							<entry><literal>label</literal></entry>
+							<entry>Sets the button’s text</entry>
+							<entry>Yes</entry>
+							<entry>–</entry>
+						</row>
+
+						&xdef;
+						&ydef;
+
+						<row>
+							<entry><literal>disabled</literal></entry>
+							<entry>If set to 1, the element will be disabled, so that the default value cannot be changed.</entry>
+							<entry>No</entry>
+							<entry>0</entry>
+						</row>
+
+						&tooltip;
+					</tbody>
+				</tgroup>
+			</table>
+
+		<para><emphasis>Return value:</emphasis> Either 1 (button clicked) or 0 (button not clicked)</para>
+
+			<example>
+				<title>Example: Using <literal>button</literal></title>
+
+				<programlisting>b.type = button
+b.label = My button</programlisting>
+
+				<graphic fileref="images/example.button.png" />
+			</example>
+		</section>
+
+		<section id="element.cancelbutton">
+			<title>Element type: <literal>cancelbutton</literal></title>
+
+			<para>A <literal>cancelbutton</literal> can be triggered using Escape and closes the window without returning any values, except the <literal>cancelbutton</literal>’s own variable, which will be returned as 1. The cancel button is always positioned to the left of the default button and can not be moved to any other position.</para>
+
+			<table>
+				<title>Attributes for elements of type
+				<literal>cancelbutton</literal></title>
+
+				<tgroup cols="4">
+					<thead>
+						<row>
+							<entry>Name</entry>
+							<entry>Purpose</entry>
+							<entry>Required</entry>
+							<entry>Default</entry>
+						</row>
+					</thead>
+
+					<tbody>
+						<row>
+							<entry><literal>label</literal></entry>
+							<entry>Sets the button title</entry>
+							<entry>No</entry>
+							<entry>Depends on the <link linkend="faq.localization">localization</link>.</entry>
+						</row>
+
+						<row>
+							<entry><literal>disabled</literal></entry>
+							<entry>If set to 1, the element will be disabled, so that the default value cannot be changed.</entry>
+							<entry>No</entry>
+							<entry>0</entry>
+						</row>
+
+						&tooltip;
+					</tbody>
+				</tgroup>
+			</table>
+
+		<para><emphasis>Return value:</emphasis> Either 1 (button clicked / user pressed Escape / user pressed Cmd-W) or 0 (button not clicked)</para>
+
+			<example>
+				<title>Example: Using <literal>cancelbutton</literal></title>
+
+				<para><programlisting>cb.type = cancelbutton
+cb.label = Close this dialog
+cb.tooltip = Closes this window without returning the values entered</programlisting></para>
+
+				<graphic fileref="images/example.cancelbutton.png" />
+			</example>
+		</section>
+
+		<section id="element.checkbox">
+			<title>Element type: <literal>checkbox</literal></title>
+
+			<para>Displays a checkbox</para>
+
+			<table>
+				<title>Attributes for elements of type <literal>checkbox</literal></title>
+
+				<tgroup cols="4">
+					<thead>
+						<row>
+							<entry>Name</entry>
+							<entry>Purpose</entry>
+							<entry>Required</entry>
+							<entry>Default</entry>
+						</row>
+					</thead>
+
+					<tbody>
+						<row>
+							<entry><literal>label</literal></entry>
+							<entry>Creates a label / title next to the checkbox</entry>
+							<entry>Yes</entry>
+							<entry>–</entry>
+						</row>
+
+						<row>
+							<entry><literal>default</literal></entry>
+							<entry>Set this to 1 if you want the checkbox to be checked by default.</entry>
+							<entry>No</entry>
+							<entry>–</entry>
+						</row>
+
+						<row>
+							<entry><literal>disabled</literal></entry>
+							<entry>If set to 1, the element will be disabled, so that the default value cannot be changed.</entry>
+							<entry>No</entry>
+							<entry>0</entry>
+						</row>
+
+						&tooltip;
+
+						&xdef;
+						&ydef;
+						&relxdef;
+						&relydef;
+					</tbody>
+				</tgroup>
+			</table>
+
+		<para><emphasis>Return value:</emphasis> Either 1 (checkbox checked) or 0 (checkbox not checked)</para>
+
+			<example>
+				<title>Example: Using <literal>checkbox</literal></title>
+
+				<programlisting>chk.type = checkbox
+chk.label = If you like, you can use a really long label, as the window will scale accordingly
+chk.tooltip = Yes, it’s that simple!</programlisting>
+
+				<graphic fileref="images/example.checkbox.png" />
+			</example>
+		</section>
+
+		<section id="element.combobox">
+			<title>Element type: <literal>combobox</literal></title>
+
+			<para>A combo box is a combination of a popup menu and a textfield: the user can either choose a value from a list or enter any string.</para>
+
+			<table>
+				<title>Attributes for elements of type
+				<literal>combobox</literal></title>
+
+				<tgroup cols="4">
+					<thead>
+						<row>
+							<entry>Name</entry>
+							<entry>Purpose</entry>
+							<entry>Required</entry>
+							<entry>Default</entry>
+						</row>
+					</thead>
+
+					<tbody>
+						&label;
+
+						<row>
+							<entry><literal>option</literal></entry>
+							<entry>Adds a value to the list of values. Can (usually should) be used more than once.</entry>
+							<entry>Yes (one option attribute is required, others are optional)</entry>
+							<entry>–</entry>
+						</row>
+
+						<row>
+							<entry><literal>completion</literal></entry>
+							<entry>Controls if and how autocompletion is performed. Possible values are 0 (no completion), 1 (completes the first item in the completion list which matches the entered string, case-sensitive), or <literal>2</literal> (ditto, but case-insensitive).</entry>
+							<entry>No</entry>
+							<entry>1</entry>
+						</row>
+
+						<row>
+							<entry><literal>mandatory</literal></entry>
+							<entry>If set to a true value (everything other than 0, “n”, “no”, empty), input is <link linkend="faq.mandatory">mandatory</link>.</entry>
+							<entry>No</entry>
+							<entry>No</entry>
+						</row>
+
+						<row>
+							<entry><literal>rows</literal></entry>
+							<entry>If set to an integer &gt; 0, sets the number of visible items/rows.</entry>
+							<entry>No</entry>
+							<entry>– (decision left to system)</entry>
+						</row>
+
+						&placeholder;
+
+						<row>
+							<entry><literal>disabled</literal></entry>
+							<entry>If set to 1, the element will be disabled, so that the default value cannot be changed.</entry>
+							<entry>No</entry>
+							<entry>0</entry>
+						</row>
+
+						&tooltip;
+
+						<row>
+							<entry><literal>width</literal></entry>
+							<entry>Width in pixels</entry>
+							<entry>No</entry>
+							<entry>&defaultwidth;</entry>
+						</row>
+
+						&xdef;
+						&ydef;
+						&relxdef;
+						&relydef;
+					</tbody>
+				</tgroup>
+			</table>
+
+		<para><emphasis>Return value:</emphasis> String contents (may be an empty string)</para>
+
+			<example id="example.combobox">
+				<title>Example: Using <literal>combobox</literal></title>
+
+				<programlisting>cb.type = combobox
+cb.label = My combobox label
+cb.default = Gromit
+cb.option = Wallace
+cb.option = Harold
+cb.option = Maude
+cb.width = 220
+cb.tooltip = Choose from the list or enter another name</programlisting>
+
+				<graphic fileref="images/example.combobox.png" />
+			</example>
+		</section>
+
+		<section id="element.date">
+			<title>Element type: <literal>date</literal></title>
+
+		<para>The <literal>date</literal> element lets the user choose a date, a time or both. It can be displayed in textual or graphical style.</para>
+
+			<table>
+				<title>Attributes for elements of type <literal>date</literal></title>
+
+				<tgroup cols="4">
+					<thead>
+						<row>
+							<entry>Name</entry>
+							<entry>Purpose</entry>
+							<entry>Required</entry>
+							<entry>Default</entry>
+						</row>
+					</thead>
+
+					<tbody>
+						<row>
+							<entry><literal>label</literal></entry>
+							<entry>Sets the date picker’s label (displayed above)</entry>
+							<entry>No</entry>
+							<entry>–</entry>
+						</row>
+
+						<row>
+							<entry><literal>textual</literal></entry>
+							<entry>Should the textual display style be used instead of the graphical style?</entry>
+							<entry>No</entry>
+							<entry>0 (No)</entry>
+						</row>
+
+						<row>
+							<entry><literal>date</literal></entry>
+							<entry>Should the user be able to chose a date?</entry>
+							<entry>No</entry>
+							<entry>1 (Yes)</entry>
+						</row>
+
+						<row>
+							<entry><literal>time</literal></entry>
+							<entry>Should the user be able to chose the time?</entry>
+							<entry>No</entry>
+							<entry>0 (No)</entry>
+						</row>
+
+						<row>
+							<entry><literal>default</literal></entry>
+							<entry>Default date and/or time that should be selected when the dialog is opened. The only string format that is <emphasis>guaranteed</emphasis> to work is “yyyy-mm-dd [hh:mm]”, for instance “2011-11-29 12:34” or “2011-11-29”. Other string formats such as “12/24/2004”, “next wednesday” or “tomorrow” <emphasis>may</emphasis> work, too.</entry>
+							<entry>No</entry>
+							<entry>Current date and/or time</entry>
+						</row>
+
+						&xdef;
+
+						<row>
+							<entry><literal>y</literal></entry>
+							<entry>Absolute vertical position in the window, measured from the <emphasis>lower</emphasis> border of the content
+							area</entry>
+							<entry>No</entry>
+							<entry>–</entry>
+						</row>
+
+						<row>
+							<entry><literal>disabled</literal></entry>
+							<entry>If set to 1, the element will be disabled, so that the default value cannot be changed.</entry>
+							<entry>No</entry>
+							<entry>0</entry>
+						</row>
+
+						&tooltip;
+					</tbody>
+				</tgroup>
+			</table>
+
+			<para><emphasis>Return value:</emphasis> Depends on the values of attributes <literal>date</literal> and <literal>time</literal>. If only a date can be selected, it will be a date string in <literal>yyyy-mm-dd</literal> format, if only a time can be selected, the format will be <literal>hh:mm</literal>. If both are enabled, you will get a date and time string in <literal>yyyy-mm-dd hh:mm</literal> format. If you only need part of this information, you have to extract the desired substrings yourself.</para>
+
+			<example>
+				<title>Example: Using <literal>date</literal></title>
+
+				<programlisting>d.type = date
+d.label = Example date
+d.default = 2017-06-23 14:38
+d.time = 1</programlisting>
+			<graphic fileref="images/example.date.png" />
+			</example>
+		</section>
+
+		<section id="element.defaultbutton">
+			<title>Element type: <literal>defaultbutton</literal></title>
+
+			<para>When the default button is pressed, the window is closed and all elements’ values are returned to the calling script. The default button is always located in the lower right corner of the window and can’t be moved to any other position.</para>
+
+			<para>A default button is added to each window <em>automatically</em> – you only have to specify it explicitly, if you want to set the label or a tooltip or need the return value (i.e.: has it been clicked?) of this button.</para>
+
+			<table>
+				<title>Attributes for elements of type
+				<literal>defaultbutton</literal></title>
+
+				<tgroup cols="4">
+					<thead>
+						<row>
+							<entry>Name</entry>
+							<entry>Purpose</entry>
+							<entry>Required</entry>
+							<entry>Default</entry>
+						</row>
+					</thead>
+
+					<tbody>
+						<row>
+							<entry><literal>label</literal></entry>
+							<entry>Sets the button title</entry>
+							<entry>No</entry>
+							<entry>OK</entry>
+						</row>
+
+						<row>
+							<entry><literal>disabled</literal></entry>
+							<entry>If set to 1, the element will be disabled, so that the default value cannot be changed.</entry>
+							<entry>No</entry>
+							<entry>0</entry>
+						</row>
+
+						&tooltip;
+					</tbody>
+				</tgroup>
+			</table>
+
+		<para><emphasis>Return value:</emphasis> Either 1 (button clicked / user pressed Return) or 0 (button not clicked)</para>
+
+			<example id="example.defaultbutton">
+				<title>Example: Using <literal>defaultbutton</literal></title>
+
+				<programlisting>db.type = defaultbutton
+db.label = Click here to close the window and save the values</programlisting>
+
+				<graphic fileref="images/example.defaultbutton.png" />
+			</example>
+		</section>
+
+		<section id="element.image">
+			<title>Element type: <literal>image</literal></title>
+
+			<para>This element displays an image (or a PDF file), optionally scaling it to a maximum width or height. Pashua can handle any image type that is supported by NSImage. This includes TIFF, GIF, JPEG, PNG, PDF, PICT and EPS.</para>
+
+			<table>
+				<title>Attributes for elements of type
+				<literal>image</literal></title>
+
+				<tgroup cols="4">
+					<thead>
+						<row>
+							<entry>Name</entry>
+							<entry>Purpose</entry>
+							<entry>Required</entry>
+							<entry>Default</entry>
+						</row>
+					</thead>
+
+					<tbody>
+						&label;
+
+						<row>
+							<entry><literal>path</literal></entry>
+							<entry>Filesystem path to the image</entry>
+							<entry>Yes</entry>
+							<entry>–</entry>
+						</row>
+
+						<row>
+							<entry><literal>border</literal></entry>
+							<entry>Set this to 1 to display a border for the image</entry>
+							<entry>No</entry>
+							<entry>0</entry>
+						</row>
+
+						<row>
+							<entry><literal>width</literal></entry>
+							<entry>If this attribute is set to some integer number, the image’s width will be set to this width (including border)</entry>
+							<entry>No</entry>
+							<entry>–</entry>
+						</row>
+
+						<row>
+							<entry><literal>height</literal></entry>
+							<entry>If this attribute is set to some integer number, the image’s height will be set to this value (including border)</entry>
+							<entry>No</entry>
+							<entry>–</entry>
+						</row>
+
+						<row>
+							<entry><literal>maxwidth</literal></entry>
+							<entry>If this attribute is set to some integer number, the image will be scaled down to this width (including border), if it’s wider</entry>
+							<entry>No</entry>
+							<entry>Calculated from window’s width</entry>
+						</row>
+
+						<row>
+							<entry><literal>maxheight</literal></entry>
+							<entry>If this attribute is set to some integer number, the image will be scaled down to this height (including border), if it’s higher</entry>
+							<entry>No</entry>
+							<entry>Calculated from window’s height</entry>
+						</row>
+
+						<row>
+							<entry><literal>upscale</literal></entry>
+							<entry>Set this to 1 to allow the image to be upscaled (which will only have an effect if setting <literal>width</literal> or <literal>height</literal>)</entry>
+							<entry>No</entry>
+							<entry>0</entry>
+						</row>
+
+						&tooltip;
+
+						&xdef;
+						&ydef;
+						&relxdef;
+						&relydef;
+					</tbody>
+				</tgroup>
+			</table>
+
+			<para>Please note that you can either specify <literal>width</literal>/<literal>height</literal> <emphasis>or</emphasis> <literal>maxwidth</literal>/<literal>maxheight</literal> – otherwise, you will get an error.</para>
+			<para>On the other hand, it is valid to specify only a <literal>width</literal> without a <literal>height</literal> or vice versa (and the same is true for <literal>maxwidth</literal> and <literal>maxheight</literal>). In this case, Pashua will try to make the best of the situation and either calulcate the missing value based on the image ratio from the given value (if without “max” prefix) or set the missing value based on the main window’s resolution (if with “max” prefix).</para>
+
+		<para><emphasis>Return value:</emphasis> None</para>
+
+			<example>
+				<title>Example: Using <literal>image</literal></title>
+
+				<programlisting>img.type = image
+img.label = This is Pashua’s icon, scaled down a little bit
+img.path = /Applications/Pashua.app/Contents/Resources/AppIcon.icns
+img.maxwidth = 64
+img.border = 1</programlisting>
+
+				<graphic fileref="images/example.image.png" />
+			</example>
+		</section>
+
+		<section id="element.openbrowser">
+			<title>Element type: <literal>openbrowser</literal></title>
+
+			<para>An <literal>openbrowser</literal> is used for choosing a filesystem path. It consists of a textfield, a button and (optionally) a label. The textfield holds the actual element value (the file path), while the button (which is <link linkend="faq.localization">localized</link>) is used to invoke a file selector sheet. Moreover, a file can be dragged &amp; dropped onto the textfield.</para>
+
+			<table>
+				<title>Attributes for elements of type
+				<literal>openbrowser</literal></title>
+
+				<tgroup cols="4">
+					<thead>
+						<row>
+							<entry>Name</entry>
+							<entry>Purpose</entry>
+							<entry>Required</entry>
+							<entry>Default</entry>
+						</row>
+					</thead>
+
+					<tbody>
+						&label;
+
+						<row>
+							<entry><literal>width</literal></entry>
+							<entry>Sets the width (overall width of texfield and button)</entry>
+							<entry>No</entry>
+							<entry>300</entry>
+						</row>
+
+						<row>
+							<entry><literal>default</literal></entry>
+							<entry>Default path</entry>
+							<entry>No</entry>
+							<entry>–</entry>
+						</row>
+
+						<row>
+							<entry><literal>filetype</literal></entry>
+							<entry>File types that can be selected in the open dialog or dropped onto the textfield; takes a space-delimited list of filename extensions (such as <literal>jpg gif tif</literal> etc.). In addition to filename extensions, you can use <literal>directory</literal> to let the user choose directories. If only <literal>directory</literal> is specified, the user won’t be able to choose any files. If only filename extensions are specified, the user won’t be able to choose directories. If you don’t specify filetype at all, the user will be able to choose anything in the open dialog box.</entry>
+							<entry>No</entry>
+							<entry>–</entry>
+						</row>
+
+						<row>
+							<entry><literal>mandatory</literal></entry>
+							<entry>If set to a true value (everything other than 0, “n”, “no”, empty), input is <link linkend="faq.mandatory">mandatory</link>.</entry>
+							<entry>No</entry>
+							<entry>No</entry>
+						</row>
+
+						&placeholder;
+
+						&xdef;
+						&ydef;
+						&relxdef;
+						&relydef;
+					</tbody>
+				</tgroup>
+			</table>
+
+		<para><emphasis>Return value:</emphasis> Full filesystem path for the selected item (may be an empty string)</para>
+
+			<example id="example.openbrowser">
+				<title>Example: Using <literal>openbrowser</literal></title>
+
+				<programlisting>opb.type = openbrowser
+opb.label = Please select an image
+opb.default = /a/very/long/path/to/a/file.jpg
+opb.filetype = jpg tiff tif gif png psd
+opb.width = 300</programlisting>
+			</example>
+
+			<graphic fileref="images/example.openbrowser.png" />
+		</section>
+
+		<section id="element.password">
+			<title>Element type: <literal>password</literal></title>
+
+			<para>This element is identical to a <link linkend="element.textfield"><literal>textfield</literal></link>, except that it hides whatever is typed into it. Moreover, you can’t copy or drag text from a <literal>password</literal> element.</para>
+
+			<table>
+				<title>Attributes for elements of type
+				<literal>password</literal></title>
+
+				<tgroup cols="4">
+					<thead>
+						<row>
+							<entry>Name</entry>
+							<entry>Purpose</entry>
+							<entry>Required</entry>
+							<entry>Default</entry>
+						</row>
+					</thead>
+
+					<tbody>
+						<row>
+							<entry><literal>label</literal></entry>
+							<entry>Creates a label/title above this element</entry>
+							<entry>No</entry>
+							<entry>–</entry>
+						</row>
+
+						<row>
+							<entry><literal>width</literal></entry>
+							<entry>The textfield’s width in pixels</entry>
+							<entry>No</entry>
+							<entry>200</entry>
+						</row>
+
+						<row>
+							<entry><literal>default</literal></entry>
+							<entry>The textfield’s initial contents</entry>
+							<entry>No</entry>
+							<entry>–</entry>
+						</row>
+
+						<row>
+							<entry><literal>disabled</literal></entry>
+							<entry>If set to 1, the element will be disabled, so that the default value cannot be changed.</entry>
+							<entry>No</entry>
+							<entry>0</entry>
+						</row>
+
+						<row>
+							<entry><literal>mandatory</literal></entry>
+							<entry>If set to a true value (everything other than 0, “n”, “no”, empty), input is <link linkend="faq.mandatory">mandatory</link>.</entry>
+							<entry>No</entry>
+							<entry>No</entry>
+						</row>
+
+						&tooltip;
+
+						&xdef;
+						&ydef;
+						&relxdef;
+						&relydef;
+					</tbody>
+				</tgroup>
+			</table>
+
+		<para><emphasis>Return value:</emphasis> String contents (may be an empty string)</para>
+
+			<example>
+				<title>Example: Using <literal>password</literal></title>
+
+				<programlisting>pw.type = password
+pw.label = Please enter your password
+pw.default = Secret!
+pw.width = 120</programlisting>
+			</example>
+
+			<graphic fileref="images/example.password.png" />
+		</section>
+
+		<section id="element.popup">
+			<title>Element type: <literal>popup</literal></title>
+
+			<para>A popup is an element that lets the user choose one value from a list of possible values</para>
+
+			<table>
+				<title>Attributes for elements of type
+				<literal>popup</literal></title>
+
+				<tgroup cols="4">
+					<thead>
+						<row>
+							<entry>Name</entry>
+							<entry>Purpose</entry>
+							<entry>Required</entry>
+							<entry>Default</entry>
+						</row>
+					</thead>
+
+					<tbody>
+						<row>
+							<entry><literal>option</literal></entry>
+							<entry>Any string that should appear as an entry in the popup, can (and probably should) be used more than once</entry>
+							<entry>Yes (at least one option is required)</entry>
+							<entry>–</entry>
+						</row>
+
+						<row>
+							<entry><literal>default</literal></entry>
+							<entry>Default value (should match one of the <literal>option</literal> attributes</entry>
+							<entry>No</entry>
+							<entry>–</entry>
+						</row>
+
+						&label;
+
+						<row>
+							<entry><literal>disabled</literal></entry>
+							<entry>If set to 1, the element will be disabled, so that the default value cannot be changed.</entry>
+							<entry>No</entry>
+							<entry>0</entry>
+						</row>
+
+						&tooltip;
+
+						<row>
+							<entry><literal>mandatory</literal></entry>
+							<entry>If set to a true value (everything other than 0, “n”, “no”, empty), input is <link linkend="faq.mandatory">mandatory</link>.</entry>
+							<entry>No</entry>
+							<entry>No</entry>
+						</row>
+
+						<row>
+							<entry><literal>width</literal></entry>
+							<entry>Width in pixels</entry>
+							<entry>No</entry>
+							<entry>&defaultwidth;</entry>
+						</row>
+
+						&xdef;
+						&ydef;
+						&relxdef;
+						&relydef;
+					</tbody>
+				</tgroup>
+			</table>
+
+		<para><emphasis>Return value:</emphasis> Selected item as string (may be an empty string)</para>
+
+			<example id="example.popup">
+				<title>Example: Using <literal>popup</literal></title>
+
+				<programlisting>p.type = popup
+p.label = Example popup menu
+p.width = 310
+p.option = Popup menu item #1
+p.option = Popup menu item #2
+p.option = Popup menu item #3
+p.default = Popup menu item #2</programlisting>
+			</example>
+
+			<graphic fileref="images/example.popup.png" />
+		</section>
+
+		<section id="element.radiobutton">
+			<title>Element type: <literal>radiobutton</literal></title>
+
+			<para>A <literal>radiobutton</literal> element lets the user choose a value from a pre-defined list of values.</para>
+
+			<table>
+				<title>Attributes for elements of type <literal>radiobutton</literal></title>
+
+				<tgroup cols="4">
+					<thead>
+						<row>
+							<entry>Name</entry>
+							<entry>Purpose</entry>
+							<entry>Required</entry>
+							<entry>Default</entry>
+						</row>
+					</thead>
+
+					<tbody>
+						&label;
+
+						<row>
+							<entry><literal>option</literal></entry>
+							<entry>Any string that should be used as a selectable value. Should be used more than once.</entry>
+							<entry>Yes (at least one <literal>option</literal> is required)</entry>
+							<entry>–</entry>
+						</row>
+
+						<row>
+							<entry><literal>default</literal></entry>
+							<entry>The value that should be selected by default. Of course, this must be one of the <literal>option</literal> values to work.</entry>
+							<entry>No</entry>
+							<entry>–</entry>
+						</row>
+
+						<row>
+							<entry><literal>disabled</literal></entry>
+							<entry>If set to 1, the element will be disabled, so that the default value cannot be changed.</entry>
+							<entry>No</entry>
+							<entry>0</entry>
+						</row>
+
+						&tooltip;
+
+						<row>
+							<entry><literal>mandatory</literal></entry>
+							<entry>If set to a true value (everything other than 0, “n”, “no”, empty), input is <link linkend="faq.mandatory">mandatory</link>.</entry>
+							<entry>No</entry>
+							<entry>No</entry>
+						</row>
+
+						&xdef;
+						&ydef;
+						&relxdef;
+						&relydef;
+					</tbody>
+				</tgroup>
+			</table>
+
+		<para><emphasis>Return value:</emphasis> Selected radiobutton’s label as string (may be an empty string)</para>
+
+			<example>
+				<title>Example: Using <literal>radiobutton</literal></title>
+
+				<programlisting>radio.type = radiobutton
+radio.label = How would you like your coffee?
+radio.option = Black
+radio.option = With milk
+radio.option = With milk and sugar
+radio.option = Only sugar, no milk
+radio.default = With milk</programlisting>
+
+				<graphic fileref="images/example.radiobutton.png" />
+			</example>
+		</section>
+
+		<section id="element.savebrowser">
+			<title>Element type: <literal>savebrowser</literal></title>
+
+			<para>A <literal>savebrowser</literal> can be used for setting a path and name for a new file. It consists of a textfield, a button and (optionally) a label. The textfield holds the actual element value (the file path and name), while the button (which is <link linkend="faq.localization">localized</link>) is used to invoke a file selector sheet.</para>
+
+			<table>
+				<title>Attributes for elements of type
+				<literal>savebrowser</literal></title>
+
+				<tgroup cols="4">
+					<thead>
+						<row>
+							<entry>Name</entry>
+							<entry>Purpose</entry>
+							<entry>Required</entry>
+							<entry>Default</entry>
+						</row>
+					</thead>
+
+					<tbody>
+						&label;
+
+						<row>
+							<entry><literal>width</literal></entry>
+							<entry>Sets the width (overall width of texfield and button)</entry>
+							<entry>No</entry>
+							<entry>300</entry>
+						</row>
+
+						<row>
+							<entry><literal>default</literal></entry>
+							<entry>Default path</entry>
+							<entry>No</entry>
+							<entry>–</entry>
+						</row>
+
+						<row>
+							<entry><literal>filetype</literal></entry>
+							<entry>File extension to use for the save dialog box; if this attribute is used, the user will be forced to use that extension for the name</entry>
+							<entry>No</entry>
+							<entry>–</entry>
+						</row>
+
+						<row>
+							<entry><literal>mandatory</literal></entry>
+							<entry>If set to a true value (everything other than 0, “n”, “no”, empty), input is <link linkend="faq.mandatory">mandatory</link>.</entry>
+							<entry>No</entry>
+							<entry>No</entry>
+						</row>
+
+						&placeholder;
+
+						&xdef;
+						&ydef;
+						&relxdef;
+						&relydef;
+					</tbody>
+				</tgroup>
+			</table>
+
+		<para><emphasis>Return value:</emphasis> Full filesystem path (may be an empty string, if no path chosen by user)</para>
+
+			<example>
+				<title>Example: Using <literal>savebrowser</literal></title>
+
+				<programlisting>svb.type = savebrowser
+svb.label = Please set the destination path
+svb.default = /tmp/foo
+svb.filetype = jpg
+svb.width = 360</programlisting>
+			</example>
+
+			<graphic fileref="images/example.savebrowser.png" />
+
+		</section>
+
+		<section id="element.text">
+			<title>Element type: <literal>text</literal></title>
+
+			<para>This element displays multi-line, wrapping text. The width of the element does <em>not</em> adapt automatically to the content, but uses the given width (or the default width, if no width is specified.) On the other hand, the height is automatically set to the minimum height needed to display the text using the given (or default) width.</para>
+
+			<table>
+				<title>Attributes for elements of type
+				<literal>text</literal></title>
+
+				<tgroup cols="4">
+					<thead>
+						<row>
+							<entry>Name</entry>
+							<entry>Purpose</entry>
+							<entry>Required</entry>
+							<entry>Default</entry>
+						</row>
+					</thead>
+
+					<tbody>
+						&label;
+
+						<row>
+							<entry><literal>width</literal></entry>
+							<entry>Sets the width of the text (in pixels)</entry>
+							<entry>No</entry>
+							<entry>&defaultwidth;</entry>
+						</row>
+
+						&tooltip;
+
+						<row>
+							<entry><literal>default</literal></entry>
+							<entry>The text to display (alias for <literal>text</literal>). You can use the string <literal>[return]</literal> to insert a linebreak.</entry>
+							<entry>Yes (either <literal>default</literal> or <literal>text</literal> must be set)</entry>
+							<entry>–</entry>
+						</row>
+
+						<row>
+							<entry><literal>text</literal></entry>
+							<entry>The text to display (synonym for <literal>default</literal>). You can use the string <literal>[return]</literal> to insert a linebreak.</entry>
+							<entry>Yes (either <literal>default</literal> or
+							<literal>text</literal> must be set)</entry>
+
+							<entry>–</entry>
+						</row>
+
+						&xdef;
+						&ydef;
+						&relxdef;
+						&relydef;
+					</tbody>
+				</tgroup>
+			</table>
+
+		<para><emphasis>Return value:</emphasis> None</para>
+
+			<example>
+				<title>Example: Using <literal>text</literal></title>
+
+				<programlisting>txt.type = text
+txt.default = Paragraph one, demo text[return][return]Paragraph two</programlisting>
+
+				<graphic fileref="images/example.text.png" />
+			</example>
+		</section>
+
+		<section id="element.textbox">
+			<title>Element type: <literal>textbox</literal></title>
+
+			<para>A textbox is a scrollable, multi-line text container. The scrollbar will appear automatically if needed. <emphasis>Note:</emphasis> If you have changed the system’s scrollbar behaviour to display both arrows at both ends (e.g. using <ulink url="http://www.bresink.com/osx/TinkerTool.html">TinkerTool</ulink>), the scrollbar might not appear for small heights.</para>
+
+			<table>
+				<title>Attributes for elements of type
+				<literal>textbox</literal></title>
+
+				<tgroup cols="4">
+					<thead>
+						<row>
+							<entry>Name</entry>
+							<entry>Purpose</entry>
+							<entry>Required</entry>
+							<entry>Default</entry>
+						</row>
+					</thead>
+
+					<tbody>
+						&label;
+
+						<row>
+							<entry><literal>width</literal></entry>
+							<entry>Sets the width of the textbox (in pixels)</entry>
+							<entry>No</entry>
+							<entry>&defaultwidth;</entry>
+						</row>
+
+						<row>
+							<entry><literal>height</literal></entry>
+							<entry>Sets the height of the text (in pixels)</entry>
+							<entry>No</entry>
+							<entry>52</entry>
+						</row>
+
+						<row>
+							<entry><literal>default</literal></entry>
+							<entry>Sets the initial contents. You can use the string <literal>[return]</literal> to insert a linebreak.</entry>
+							<entry>No</entry>
+							<entry>–</entry>
+						</row>
+
+						<row>
+							<entry><literal>fontsize</literal></entry>
+							<entry>Size of the text inside the textbox. There are three sizes available, which conform to the system’s standard sizes: <literal>regular</literal>, <literal>small</literal>, or <literal>mini</literal>.</entry>
+							<entry>No</entry>
+							<entry><literal>regular</literal></entry>
+						</row>
+
+						<row>
+							<entry><literal>fonttype</literal></entry>
+							<entry>Set this to <literal>fixed</literal> if the text should be displayed using a monospace font.</entry>
+							<entry>No</entry>
+							<entry><literal>–</literal></entry>
+						</row>
+
+						<row>
+							<entry><literal>mandatory</literal></entry>
+							<entry>If set to a true value (everything other than 0, “n”, “no”, empty), input is <link linkend="faq.mandatory">mandatory</link>.</entry>
+							<entry>No</entry>
+							<entry>No</entry>
+						</row>
+
+						<row>
+							<entry><literal>disabled</literal></entry>
+							<entry>If set to 1, the element will be disabled, so that the default value cannot be changed.</entry>
+							<entry>No</entry>
+							<entry>0</entry>
+						</row>
+
+						&tooltip;
+
+						&xdef;
+						&ydef;
+						&relxdef;
+						&relydef;
+					</tbody>
+				</tgroup>
+			</table>
+
+		<para><emphasis>Return value:</emphasis> String contents (may be an empty string)</para>
+
+			<example>
+				<title>Example: Using <literal>textbox</literal></title>
+
+				<programlisting>tb.type = textbox
+tb.default = Line 1[return]Line 2[return]Line 3
+tb.width = 300
+tb.height = 60</programlisting>
+
+				<graphic fileref="images/example.textbox.png" />
+			</example>
+		</section>
+
+		<section id="element.textfield">
+			<title>Element type: <literal>textfield</literal></title>
+
+			<para>A textfield is a simple, one-line text input field with an optional label displayed above the textfield.</para>
+
+			<table>
+				<title>Attributes for elements of type <literal>textfield</literal></title>
+
+				<tgroup cols="4">
+					<thead>
+						<row>
+							<entry>Name</entry>
+							<entry>Purpose</entry>
+							<entry>Required</entry>
+							<entry>Default</entry>
+						</row>
+					</thead>
+
+					<tbody>
+						&label;
+
+						<row>
+							<entry><literal>width</literal></entry>
+							<entry>The textfield’s width in pixels</entry>
+							<entry>No</entry>
+							<entry>&defaultwidth;</entry>
+						</row>
+
+						<row>
+							<entry><literal>default</literal></entry>
+							<entry>The textfield’s initial contents</entry>
+							<entry>No</entry>
+							<entry>–</entry>
+						</row>
+
+						<row>
+							<entry><literal>disabled</literal></entry>
+							<entry>If set to 1, the element will be disabled, so that the default value cannot be changed.</entry>
+							<entry>No</entry>
+							<entry>0</entry>
+						</row>
+
+						<row>
+							<entry><literal>mandatory</literal></entry>
+							<entry>If set to a true value (everything other than 0, “n”, “no”, empty), input is <link linkend="faq.mandatory">mandatory</link>.</entry>
+							<entry>No</entry>
+							<entry>No</entry>
+						</row>
+
+						&placeholder;
+
+						&tooltip;
+
+						&xdef;
+						&ydef;
+						&relxdef;
+						&relydef;
+					</tbody>
+				</tgroup>
+			</table>
+
+		<para><emphasis>Return value:</emphasis> String contents (may be an empty string)</para>
+
+			<example>
+				<title>Example: Using <literal>textfield</literal></title>
+
+				<programlisting>txf.type = textfield
+txf.label = Enter placeholder text
+txf.default = Lorem ipsum dolor sit amet
+txf.width = 300</programlisting>
+			</example>
+
+			<graphic fileref="images/example.textfield.png" />
+		</section>
+	</chapter>
+
+	<chapter id="chapter.faq">
+		<title>FAQ</title>
+
+		<section id="faq.opening">
+			<title>I can’t open Pashua, as it is from an “unidentified developer”</title>
+			<para>If your Mac tells you that Pashua cannot be opened, as it is an application by an unidentified developer, this is nothing to worry about. <ulink url="https://www.bluem.net/jump/gatekeeper">On my website</ulink>, you can find more detailed information on this, but the short summary is: simply use the contextual menu (right-click or Ctrl-click on Pashua’s icon), then choose item “Open” and confirm that you want to open it.</para>
+		</section>
+
+		<section id="faq.new">
+			<title>What is new in version [XY]?</title>
+			<para>Please take a look at the <ulink url="https://www.bluem.net/jump/pashua-versions">version history</ulink>.</para>
+		</section>
+
+		<section id="faq.encodings">
+			<title>What text encodings does Pashua support?</title>
+
+			<para>For some time, Pashua had offered specifying the text encoding of the configuration string, as there
+				were languages which had limited or no support for UTF-8. Today, UTF-8 is ubiquitous, so this option was
+				removed. Pashua will auto-detect the encoding of a configuration file and return the values in the same
+				encoding. This implies that command-line option <literal>-e</literal>, which was used to set the
+				encoding, is now completely ignored.
+				<emphasis>Please note:
+					Guessing the encoding only works with configuration files. If you pass the configuration via STDIN,
+					Pashua will expect it to be UTF-8.
+				</emphasis>
+			</para>
+		</section>
+
+		<section id="faq.runtime-config">
+			<title>How can I dynamically configure a dialog at runtime?</title>
+			<para>The dialog configuration which is passed to Pashua is a string. Often, this string will be static, but
+				sometimes it can be useful or necessary to have either dynamic parts in it or even completely construct
+				it at runtime. A simple example would be a tool which, for some reason, contains a date field which
+				should be pre-filled with the current date. Let’s imagine that this tool is based on a Bash script –
+				this script could get the date from the <code>date</code> command-line tool and save it in a variable
+				using <code>TODAY=$(date '+%Y-%m-%d')</code> and then insert it into the dialog configuration, using
+				something like <code>datefield.default ${TODAY}</code>. This is only a very simple example, but
+				hopefully you get the point: <emphasis>Pashua does not care how the dialog configuration string was
+					created – it only has to fulfill the syntax rules.
+				</emphasis> Pashua will not even know if the configuration is static or if and how it was created at
+				runtime.
+			</para>
+
+			<para>If you take a look at the example scripts, you will see that they make use of dynamic configuration
+				strings: Pashua’s icon is added to the example dialog, and this is done by locating the path to
+				Pashua.app at runtime and deriving the icon’s path from that location.
+			</para>
+		</section>
+
+		<section id="faq.mandatory">
+			<title>How does Pashua handle mandatory fields?</title>
+
+			<para>Some of the element types (those for which it makes sense) can be defined as mandatory. This means
+				that the dialog cannot be closed as long as the element is empty. Here, “empty” means that the element
+				does not have a string value or that the string value contains only whitespace; the digit zero (0) is
+				not regarded as empty. Radio buttons are regarded as empty as long as none of the buttons has been
+				clicked.
+			</para>
+
+			<p>This screenshot shows a visual marker which is displayed next to a mandatory element when the “OK” button is clicked:
+			</p>
+			<graphic fileref="images/window.mandatory.png"/>
+
+		</section>
+
+		<section id="faq.localization">
+			<title>Can I localize my Pashua-based application?</title>
+
+			<para>Pashua itself is localized in English, German and French. The localizations are used for the menu bar,
+				the application about box, button titles (<link linkend="element.defaultbutton">
+					defaultbutton</link>, <link linkend="element.cancelbutton">cancelbutton</link>, <link linkend="element.savebrowser">savebrowser
+				</link> and <link linkend="element.openbrowser">openbrowser</link> buttons) and of course for error
+				messages. It’s your application’s responsibility to provide localization by passing an appropriate
+				configuration string to Pashua for anything else that should be localized. Hint: if you want to build a
+				multi-language application and need to detect the user’s preferred language from the shell, you can use
+				<code>
+					defaults read -g AppleLocale
+				</code>
+			</para>
+		</section>
+
+		<section id="faq.multiplewindows">
+			<title>How do I display 2 or more windows one after another?</title>
+
+			<para>You can call Pashua multiple times, but this will result in successive application launches (with the icon moving in and out of the Dock), which is annoying. <link linkend="faq.dockicon">Hiding the Dock icon</link> helps a lot in this case, but it’s only a remedy – not a real solution.</para>
+		</section>
+
+		<section id="faq.multipleelements">
+			<title>When will Pashua support multiple checkboxes/radiobuttons…?</title>
+
+			<para>You can use <emphasis>any</emphasis> GUI element as often as you like; the only exceptions are the <link linkend="element.cancelbutton">cancelbutton</link> and the <link linkend="element.defaultbutton">defaultbutton</link>. You only have to make sure that the names are unique:</para>
+
+			<programlisting>chk1.type = checkbox
+chk1.label = Checkbox 1
+
+chk2.type = checkbox
+chk2.label = A second checkbox
+
+chk3.type = checkbox
+chk3.label = Checkbox #3</programlisting>
+		</section>
+
+		<section id="faq.bindings">
+			<title>When will Pashua support programming language [XY]?</title>
+			<para>The question is not, when Pashua will support the programming language, but rather vice versa. Pashua
+				does not care (and does not even know) from which programming language it was invoked. It gets a dialog
+				configuration, it does its job, it returns the resulting values and quits. That’s all. Basically you can
+				use Pashua from any language that is able to write a file or write to a Unix pipe, call an application
+				with command line arguments, manipulate strings and declare variables dynamically or handle associative
+				arrays. If code for your favourite language is not included in the Pashua distribution or in the <ulink url="https://github.com/BlueM/Pashua-Bindings">Pashua
+					Bindings Repository</ulink>, simply go ahead and write the code yourself.</para>
+		</section>
+
+		<section id="faq.redistribution">
+			<title>May I distribute applications based on Pashua?</title>
+			<para>Starting with version 0.11, Pashua is Open Source Software, licensed under the <ulink url="https://opensource.org/licenses/BSD-3-Clause">3-Clause BSD License</ulink>. As long as you comply with the license, any usage of the source code, part of the source or use (including redistribution) of the compiled binary is permitted.</para>
+		</section>
+
+		<section id="faq.progress-bars">
+			<title>When will Pashua support progress bars?</title>
+			<para>Progress bars are a UI element I am asked for regularly. The problem with progress bars is that they
+				conceptually differ from Pashua’s approach. When Pashua gets a dialog description and puts the dialog on
+				screen, it is in control and runs independently from the process from which it was started. A progress
+				bar, on the other hand, would require continuous (or at least periodic) interaction with that process,
+				as Pashua would need to receive updates – at the very least least to be informed when the operation
+				which the progress bar represents has been finished, or maybe also to display the current length of the
+				bar, in case it is a determinate progress indicator.</para>
+			<para>As you can see, the “Fire and forget” approach and the “Start and control Pashua” approach are two
+				different kettles of fish, and this is why progress bars won’t be needed in the foreseeable future. If
+				you really need a progress bar and you need it now, you can still use <ulink url="https://cocoadialog.com/">cocoaDialog</ulink>.</para>
+		</section>
+
+		<section id="faq.dockicon">
+			<title>How can I hide the dock icon?</title>
+			<para>Most Cocoa applications can be modified so that the Dock icon and the application-specific menu bar are hidden – and Pashua is no exception to this rule. You can achieve this by opening the file <filename>Info.plist</filename> inside Pashua’s application bundle and changing the line below the one containing <varname>LSUIElement</varname> from <literal>&lt;false/&gt;</literal> to <literal>&lt;true/&gt;</literal>. If you don’t notice any change in Pashua’s behaviour, you should log out and back in.</para>
+		</section>
+
+		<section id="faq.realapps">
+			<title>Can I build “real” applications with Pashua?</title>
+
+			<para>Native OS X applications are nothing like folders with a name that ends with “.app” (invisible in the
+				Finder by default) and that have a specific directory structure in them. You can examine such a folder
+				(called an “application bundle”) by context-clicking on the name and choosing the appropriate option
+				from the contextual menu (in English it is “Show Package Contents”, in German it is “Paketinhalt
+				zeigen”).
+			</para>
+
+			<para>As a starting point, an example for a doubleclickable, “real” application with a Pashua GUI is
+				provided. When you play around with the application bundle, there are a few things to keep in mind:
+			</para>
+
+			<itemizedlist>
+				<listitem>
+					<para>The script that is the “engine” inside the application bundle must have the same name as the
+						bundle itself (without the “.app” extension). Example: If your application should have the name
+						“Hello world”, then the script in <literal>Hello world.app/Contents/MacOS/</literal> must be
+						named “Hello world”.
+					</para>
+				</listitem>
+
+				<listitem>
+					<para>The script must have the executable bit set, i.e.: it must be executable at the shell. If it
+						is not yet, do a
+						<literal>chmod +x /path/to/the/script</literal>
+					</para>
+				</listitem>
+
+				<listitem>
+					<para>Modify file <literal>Contents/Info.plist</literal> inside the application bundle to match your
+						needs. You will at least have to change the “Doubleclickable Example” string to your
+						applications’name (in the example above, it would have to be “Hello world”). Moreover, you
+						should set the <literal>CFBundleIdentifier</literal> value (currently
+						“com.example.pashua-doubleclickable-example”) to an appropriate value.
+					</para>
+				</listitem>
+
+				<listitem>
+					<para>Modify the application author and copyright info in <literal>
+						Contents/Resources/English.lproj/InfoPlist.strings
+					</literal> inside the application bundle.
+					</para>
+				</listitem>
+
+				<listitem>
+					<para>When using a Perl or Python script, you should put the corresponding module inside the same
+						folder (<literal>*.app/Contents/MacOS/</literal>) as the script.
+					</para>
+				</listitem>
+
+				<listitem>
+					<para>I haven’t managed to get AppleScript to work inside application bundles. You can use a wrapper
+						shell script containing something like
+					</para>
+
+					<programlisting>#!/bin/sh
+scriptpath=`dirname "$0"`
+osascript "$scriptpath/my_applescript.app"</programlisting>
+
+					<para>…, but though this will work, the application will not finish launching (the Dock icon won’t stop hopping).</para>
+				</listitem>
+			</itemizedlist>
+		</section>
+
+		<section id="faq.meaning">
+			<title>What does “Pashua” mean?</title>
+			<para>Naming things is not easy, and while searching for a name, at some point I started to play around with acronyms from “<strong>P</strong>erl”, “<strong>a</strong>nd”, “<strong>sh</strong>ell” (actually, at the beginning – 2003 – I only thought of Perl and shell scripts) and “<strong>U</strong>I” – and eventually came up with “Pashua”. So, basically, it does not mean anything.</para>
+		</section>
+	</chapter>
+
+	<chapter id="chapter.history">
+		<title>Version information</title>
+		<para>Pashua {@VERSION@} was released on {@DATE@}.</para>
+		<para>For information on changes and the complete version history, please <ulink url="https://www.bluem.net/jump/pashua-versions/">take a look at the website</ulink>.</para>
+	</chapter>
+</book>
