@@ -40,6 +40,7 @@
                  forWindow:(id)window {
 
     id element = [window valueForKey:@"defaultButton"];
+    [window setValue:[attributes objectForKey:@"key"] forKey:@"defaultButtonkey"];
 
     if ([attributes objectForKey:@"label"]) {
         [element setTitle:[attributes objectForKey:@"label"]];

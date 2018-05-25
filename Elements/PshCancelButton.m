@@ -40,6 +40,7 @@
                  forWindow:(id)window {
 
     id element = [window valueForKey:@"cancelButton"];
+    [window setValue:[attributes objectForKey:@"key"] forKey:@"cancelButtonkey"];
 
     if ([attributes objectForKey:@"label"]) {
         [element setTitle:[attributes objectForKey:@"label"]];

@@ -352,10 +352,10 @@
                                                                     yOffset:&yOffset];
 
     if (nil == view) {
+        // Will be the case for buttons
         return;
     }
 
-    // Add the view to the window
     [[self contentView] addSubview:view];
 
     // Increase window's content view width, if needed
@@ -369,14 +369,6 @@
     }
 
     [objects setObject:view forKey:[attributes objectForKey:@"key"]];
-
-    if ([view class] == [PshCancelButton class]) {
-        [self setValue:[attributes objectForKey:@"key"] forKey:@"cancelButtonkey"];
-    }
-
-    if ([view class] == [PshDefaultButton class]) {
-        [self setValue:[attributes objectForKey:@"key"] forKey:@"defaultButtonkey"];
-    }
 }
 
 - (void)dealloc {
