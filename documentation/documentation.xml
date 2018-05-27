@@ -1421,22 +1421,12 @@ txf.width = 300</programlisting>
 
 		<section id="faq.runtime-config">
 			<title>How can I dynamically configure a dialog at runtime?</title>
-			<para>The dialog configuration which is passed to Pashua is a string. Often, this string will be static, but
-				sometimes it can be useful or necessary to have either dynamic parts in it or even completely construct
-				it at runtime. A simple example would be a tool which, for some reason, contains a date field which
-				should be pre-filled with the current date. Let’s imagine that this tool is based on a Bash script –
-				this script could get the date from the <code>date</code> command-line tool and save it in a variable
-				using <code>TODAY=$(date '+%Y-%m-%d')</code> and then insert it into the dialog configuration, using
-				something like <code>datefield.default ${TODAY}</code>. This is only a very simple example, but
-				hopefully you get the point: <emphasis>Pashua does not care how the dialog configuration string was
-					created – it only has to fulfill the syntax rules.
+			<para>The dialog configuration which is passed to Pashua is a string. Often, this string will be static, but sometimes it can be useful or necessary to have either dynamic parts in it or even completely construct it at runtime. A simple example would be a tool which, for some reason, contains a date field which should be pre-filled with the current date. Let’s imagine that this tool is based on a Bash script – this script could get the date from the <code>date</code> command-line tool and save it in a variable using <code>TODAY=$(date '+%Y-%m-%d')</code> and then insert it into the dialog configuration, using something like <code>datefield.default ${TODAY}</code>. This is only a very simple example, but hopefully you get the point: <emphasis>Pashua does not care how the dialog configuration string was created – it only has to fulfill the syntax rules.
 				</emphasis> Pashua will not even know if the configuration is static or if and how it was created at
 				runtime.
 			</para>
 
-			<para>If you take a look at the example scripts, you will see that they make use of dynamic configuration
-				strings: Pashua’s icon is added to the example dialog, and this is done by locating the path to
-				Pashua.app at runtime and deriving the icon’s path from that location.
+			<para>If you take a look at the example scripts, you will see that they make use of dynamic configuration strings: Pashua’s icon is added to the example dialog, and this is done by locating the path to Pashua.app at runtime and deriving the icon’s path from that location.
 			</para>
 		</section>
 
@@ -1460,15 +1450,10 @@ txf.width = 300</programlisting>
 			<title>Can I localize my Pashua-based application?</title>
 
 			<para>Pashua itself is localized in English, German and French. The localizations are used for the menu bar,
-				the application about box, button titles (<link linkend="element.defaultbutton">
-					defaultbutton</link>, <link linkend="element.cancelbutton">cancelbutton</link>, <link linkend="element.savebrowser">savebrowser
+				the application about box, button titles (<link linkend="element.defaultbutton">defaultbutton</link>, <link linkend="element.cancelbutton">cancelbutton</link>, <link linkend="element.savebrowser">savebrowser
 				</link> and <link linkend="element.openbrowser">openbrowser</link> buttons) and of course for error
 				messages. It’s your application’s responsibility to provide localization by passing an appropriate
-				configuration string to Pashua for anything else that should be localized. Hint: if you want to build a
-				multi-language application and need to detect the user’s preferred language from the shell, you can use
-				<code>
-					defaults read -g AppleLocale
-				</code>
+				configuration string to Pashua for anything else that should be localized. Hint: if you want to build a 				multi-language application and need to detect the user’s preferred language from the shell, you can use <code>defaults read -g AppleLocale</code>.
 			</para>
 		</section>
 
