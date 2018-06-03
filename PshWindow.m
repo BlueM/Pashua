@@ -92,6 +92,42 @@
     NSView *contentView = [[NSView alloc] initWithFrame:[self frame]];
     [self setContentView:contentView];
     [contentView release];
+    
+    // Vibrant window light
+    if ([theAttributes objectForKey:@"vibrance"] &&
+        [[theAttributes objectForKey:@"vibrance"] isEqualToString:@"light"]) {
+        
+        NSVisualEffectView *vibrant=[[NSVisualEffectView alloc] initWithFrame:[self frame]];
+        [vibrant setAutoresizingMask:NSViewWidthSizable|NSViewHeightSizable];
+        // uncomment for dark mode instead of light mode
+        [vibrant setAppearance:[NSAppearance appearanceNamed:NSAppearanceNameVibrantLight]];
+        [vibrant setBlendingMode: NSVisualEffectBlendingModeBehindWindow];
+        [self setContentView:vibrant];
+        [vibrant release];
+        self.styleMask = self.styleMask | NSFullSizeContentViewWindowMask;
+        self.appearance = [NSAppearance appearanceNamed:NSAppearanceNameVibrantLight];
+        
+        // Vibrant window dark
+    } else if ([theAttributes objectForKey:@"vibrance"] &&
+               [[theAttributes objectForKey:@"vibrance"] isEqualToString:@"dark"]) {
+        NSVisualEffectView *vibrant=[[NSVisualEffectView alloc] initWithFrame:[self frame]];
+        [vibrant setAutoresizingMask:NSViewWidthSizable|NSViewHeightSizable];
+        // uncomment for dark mode instead of light mode
+        [vibrant setAppearance:[NSAppearance appearanceNamed:NSAppearanceNameVibrantDark]];
+        [vibrant setBlendingMode: NSVisualEffectBlendingModeBehindWindow];
+        [self setContentView:vibrant];
+        [vibrant release];
+        self.styleMask = self.styleMask | NSFullSizeContentViewWindowMask;
+        self.appearance = [NSAppearance appearanceNamed:NSAppearanceNameVibrantDark];
+    }
+    
+    // With/without titlebar
+    if ([theAttributes objectForKey:@"titlebar"] &&
+        [[theAttributes objectForKey:@"titlebar"] isEqualToString:@"0"]) {
+        self.titlebarAppearsTransparent = TRUE;
+    } else {
+        self.titlebarAppearsTransparent = FALSE;
+    }
 
     [self setupWindowWithElements:theElements];
 
