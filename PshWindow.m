@@ -99,7 +99,6 @@
         
         NSVisualEffectView *vibrant=[[NSVisualEffectView alloc] initWithFrame:[self frame]];
         [vibrant setAutoresizingMask:NSViewWidthSizable|NSViewHeightSizable];
-        // uncomment for dark mode instead of light mode
         [vibrant setAppearance:[NSAppearance appearanceNamed:NSAppearanceNameVibrantLight]];
         [vibrant setBlendingMode: NSVisualEffectBlendingModeBehindWindow];
         [self setContentView:vibrant];
@@ -112,7 +111,6 @@
                [[theAttributes objectForKey:@"vibrance"] isEqualToString:@"dark"]) {
         NSVisualEffectView *vibrant=[[NSVisualEffectView alloc] initWithFrame:[self frame]];
         [vibrant setAutoresizingMask:NSViewWidthSizable|NSViewHeightSizable];
-        // uncomment for dark mode instead of light mode
         [vibrant setAppearance:[NSAppearance appearanceNamed:NSAppearanceNameVibrantDark]];
         [vibrant setBlendingMode: NSVisualEffectBlendingModeBehindWindow];
         [self setContentView:vibrant];
