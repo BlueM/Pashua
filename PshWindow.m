@@ -93,36 +93,40 @@
     [self setContentView:contentView];
     [contentView release];
     
-    // Vibrant window light
+    // Appearances
+    // Light (default)
     if ([theAttributes objectForKey:@"appearance"] &&
         [[theAttributes objectForKey:@"appearance"] isEqualToString:@"light"]) {
         self.appearance = [NSAppearance appearanceNamed:NSAppearanceNameVibrantLight];
-        
-        // Vibrant window dark
+        // Dark
     } else if ([theAttributes objectForKey:@"appearance"] &&
                [[theAttributes objectForKey:@"appearance"] isEqualToString:@"dark"]) {
         self.appearance = [NSAppearance appearanceNamed:NSAppearanceNameVibrantDark];
+        //  Light-vibrant
+    } else if ([theAttributes objectForKey:@"appearance"] &&
+               [[theAttributes objectForKey:@"appearance"] isEqualToString:@"light-vibrant"]) {
+        self.appearance = [NSAppearance appearanceNamed:NSAppearanceNameVibrantLight];
+        // Dark-vibrant
+    } else if ([theAttributes objectForKey:@"appearance"] &&
+               [[theAttributes objectForKey:@"appearance"] isEqualToString:@"dark-vibrant"]) {
+        self.appearance = [NSAppearance appearanceNamed:NSAppearanceNameVibrantDark];
     }
     
-    if ([theAttributes objectForKey:@"vibrant"] &&
-        [[theAttributes objectForKey:@"vibrant"] isEqualToString:@"1"]) {
+    // Vibrancy setup
+    if ([[theAttributes objectForKey:@"appearance"] isEqualToString:@"light-vibrant"] || [[theAttributes objectForKey:@"appearance"] isEqualToString:@"dark-vibrant"]) {
         NSVisualEffectView *vibrant=[[NSVisualEffectView alloc] initWithFrame:[self frame]];
         [vibrant setAutoresizingMask:NSViewWidthSizable|NSViewHeightSizable];
-        
-        // Vibrance requires an UI scheme
-        if ([[theAttributes objectForKey:@"appearance"] isEqualToString:@"light"]) {
-            [vibrant setAppearance:[NSAppearance appearanceNamed:NSAppearanceNameVibrantLight]];
-        } else if ([[theAttributes objectForKey:@"appearance"] isEqualToString:@"dark"]) {
-            [vibrant setAppearance:[NSAppearance appearanceNamed:NSAppearanceNameVibrantDark]];
-        }
-        
         [vibrant setBlendingMode: NSVisualEffectBlendingModeBehindWindow];
         [self setContentView:vibrant];
         [vibrant release];
         self.styleMask = self.styleMask | NSFullSizeContentViewWindowMask;
+        
+        if ([theAttributes objectForKey:@"transparency"]) {
+            [NSException raise:EXC_CONFIG format:PHR_CFGVIBRANTCONFL];
+        }
     }
     
-    // With/without titlebar
+    // With/Without titlebar
     if ([theAttributes objectForKey:@"titlebar"] &&
         [[theAttributes objectForKey:@"titlebar"] isEqualToString:@"0"]) {
         self.titlebarAppearsTransparent = TRUE;
