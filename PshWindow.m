@@ -97,7 +97,7 @@
     // Light (default)
     if ([theAttributes objectForKey:@"appearance"] &&
         [[theAttributes objectForKey:@"appearance"] isEqualToString:@"light"]) {
-        self.appearance = [NSAppearance appearanceNamed:NSAppearanceNameVibrantLight];
+        self.appearance = [NSAppearance appearanceNamed:NSAppearanceNameAqua];
         // Dark
     } else if ([theAttributes objectForKey:@"appearance"] &&
                [[theAttributes objectForKey:@"appearance"] isEqualToString:@"dark"]) {
