@@ -95,35 +95,32 @@
 
     if (@available(macOS 10.10, *)) {
         NSString *appearance = [theAttributes objectForKey:@"appearance"];
+        BOOL vibrant = NO;
 
         // Appearances
         if ([appearance isEqualToString:@"light"]) {
-            // Light (default)
             self.appearance = [NSAppearance appearanceNamed:NSAppearanceNameAqua];
         } else if ([appearance isEqualToString:@"dark"]) {
-            // Dark
             self.appearance = [NSAppearance appearanceNamed:NSAppearanceNameVibrantDark];
         } else if ([appearance isEqualToString:@"light-vibrant"]) {
-            //  Light-vibrant
+            vibrant = YES;
             self.appearance = [NSAppearance appearanceNamed:NSAppearanceNameVibrantLight];
         } else if ([appearance isEqualToString:@"dark-vibrant"]) {
-            // Dark-vibrant
+            vibrant = YES;
             self.appearance = [NSAppearance appearanceNamed:NSAppearanceNameVibrantDark];
         }
 
         // Vibrancy setup
-        if ([appearance isEqualToString:@"light-vibrant"] ||
-            [appearance isEqualToString:@"dark-vibrant"]) {
-            NSVisualEffectView *vibrant=[[NSVisualEffectView alloc] initWithFrame:[self frame]];
-            [vibrant setAutoresizingMask:NSViewWidthSizable|NSViewHeightSizable];
-            [vibrant setBlendingMode: NSVisualEffectBlendingModeBehindWindow];
-            [self setContentView:vibrant];
-            [vibrant release];
-            self.styleMask = self.styleMask | NSFullSizeContentViewWindowMask;
-
+        if (vibrant) {
             if ([theAttributes objectForKey:@"transparency"]) {
                 [NSException raise:EXC_CONFIG format:PHR_CFGVIBRANTCONFL];
             }
+            NSVisualEffectView *effectView = [[NSVisualEffectView alloc] initWithFrame:[self frame]];
+            [effectView setAutoresizingMask:NSViewWidthSizable|NSViewHeightSizable];
+            [effectView setBlendingMode: NSVisualEffectBlendingModeBehindWindow];
+            [self setContentView:effectView];
+            [effectView release];
+            self.styleMask = self.styleMask | NSFullSizeContentViewWindowMask;
         }
 
         // With/Without titlebar
