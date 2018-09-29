@@ -92,28 +92,27 @@
     NSView *contentView = [[NSView alloc] initWithFrame:[self frame]];
     [self setContentView:contentView];
     [contentView release];
-    
+
+    NSString *appearance = [theAttributes objectForKey:@"appearance"];
+
     // Appearances
-    // Light (default)
-    if ([theAttributes objectForKey:@"appearance"] &&
-        [[theAttributes objectForKey:@"appearance"] isEqualToString:@"light"]) {
+    if ([appearance isEqualToString:@"light"]) {
+        // Light (default)
         self.appearance = [NSAppearance appearanceNamed:NSAppearanceNameAqua];
+    } else if ([appearance isEqualToString:@"dark"]) {
         // Dark
-    } else if ([theAttributes objectForKey:@"appearance"] &&
-               [[theAttributes objectForKey:@"appearance"] isEqualToString:@"dark"]) {
         self.appearance = [NSAppearance appearanceNamed:NSAppearanceNameVibrantDark];
+    } else if ([appearance isEqualToString:@"light-vibrant"]) {
         //  Light-vibrant
-    } else if ([theAttributes objectForKey:@"appearance"] &&
-               [[theAttributes objectForKey:@"appearance"] isEqualToString:@"light-vibrant"]) {
         self.appearance = [NSAppearance appearanceNamed:NSAppearanceNameVibrantLight];
+    } else if ([appearance isEqualToString:@"dark-vibrant"]) {
         // Dark-vibrant
-    } else if ([theAttributes objectForKey:@"appearance"] &&
-               [[theAttributes objectForKey:@"appearance"] isEqualToString:@"dark-vibrant"]) {
         self.appearance = [NSAppearance appearanceNamed:NSAppearanceNameVibrantDark];
     }
     
     // Vibrancy setup
-    if ([[theAttributes objectForKey:@"appearance"] isEqualToString:@"light-vibrant"] || [[theAttributes objectForKey:@"appearance"] isEqualToString:@"dark-vibrant"]) {
+    if ([appearance isEqualToString:@"light-vibrant"] ||
+        [appearance isEqualToString:@"dark-vibrant"]) {
         NSVisualEffectView *vibrant=[[NSVisualEffectView alloc] initWithFrame:[self frame]];
         [vibrant setAutoresizingMask:NSViewWidthSizable|NSViewHeightSizable];
         [vibrant setBlendingMode: NSVisualEffectBlendingModeBehindWindow];
