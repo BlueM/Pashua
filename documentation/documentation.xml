@@ -191,9 +191,9 @@ tx.width = 310</programlisting>
 
 						<row>
 							<entry><literal>appearance</literal></entry>
-							<entry>Only allowed value is <literal>metal</literal>, which will create a “brushed metal” window</entry>
+							<entry>One of <literal>light</literal>, <literal>light-vibrant</literal>, <literal>dark</literal>, <literal>dark-vibrant</literal> or <literal>metal</literal> (deprecated)</entry>
 							<entry>No</entry>
-							<entry>-</entry>
+							<entry><literal>light</literal></entry>
 						</row>
 
 						<row>
@@ -212,9 +212,9 @@ tx.width = 310</programlisting>
 
 						<row>
 							<entry><literal>floating</literal></entry>
-							<entry>Setting <varname>floating</varname> to 1 will result in the window floating above other windows.</entry>
+							<entry>Setting <varname>floating</varname> to <literal>1</literal> will result in the window floating above other windows.</entry>
 							<entry>No</entry>
-							<entry>0</entry>
+							<entry><literal>0</literal></entry>
 						</row>
 
 						<row>
@@ -225,10 +225,17 @@ tx.width = 310</programlisting>
 						</row>
 
 						<row>
-							<entry><literal>transparency</literal></entry>
-							<entry>Sets the window’s transparency, decimal value from 0 (invisible) to 1 (opaque)</entry>
+							<entry><literal>titlebar</literal></entry>
+							<entry>If set to <literal>0</literal>, the titlebar will be visually unified with the dialog’s content.</entry>
 							<entry>No</entry>
-							<entry>1</entry>
+							<entry><literal>1</literal></entry>
+						</row>
+
+						<row>
+							<entry><literal>transparency</literal></entry>
+							<entry>Sets the window’s transparency, decimal value from 0 (invisible) to 1 (opaque). Note: transparency cannot be used when using one of the “vibrant” appearances.</entry>
+							<entry>No</entry>
+							<entry><literal>1</literal></entry>
 						</row>
 
 						<row>
