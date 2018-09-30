@@ -89,6 +89,7 @@
                         [[theAttributes objectForKey:@"transparency"] floatValue] : DEFAULT_ALPHA];
 
     // Add content view
+    contentViewExtraHeight = 0;
     NSView *contentView = [[NSView alloc] initWithFrame:[self frame]];
     [self setContentView:contentView];
     [contentView release];
@@ -120,6 +121,7 @@
             [effectView setBlendingMode: NSVisualEffectBlendingModeBehindWindow];
             [self setContentView:effectView];
             [effectView release];
+            contentViewExtraHeight += 10;
             self.styleMask = self.styleMask | NSFullSizeContentViewWindowMask;
         }
 
@@ -127,7 +129,13 @@
         if ([theAttributes objectForKey:@"titlebar"] &&
             [[theAttributes objectForKey:@"titlebar"] isEqualToString:@"0"]) {
             self.titlebarAppearsTransparent = TRUE;
+            if (!vibrant) {
+                contentViewExtraHeight -= 10;
+            }
         } else {
+            if (vibrant) {
+                contentViewExtraHeight += 10;
+            }
             self.titlebarAppearsTransparent = FALSE;
         }
     }
@@ -207,6 +215,8 @@
 
     [self finishCancelButton];
     [self finishDefaultButton];
+
+    [self setContentSize:NSMakeSize([[self contentView] frame].size.width, [[self contentView] frame].size.height + contentViewExtraHeight)];
 
     [elmnts release];
 }
