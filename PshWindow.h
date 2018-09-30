@@ -44,7 +44,7 @@
     NSString *cancelButtonkey;
     NSString *defaultButtonkey;
     NSStringEncoding encoding; // Encoding to return values in
-
+    int contentViewExtraHeight;
     NSButton *defaultButton;
     NSButton *cancelButton;
 

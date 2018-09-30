@@ -48,3 +48,4 @@
 #define PHR_CFGSTRANGELINE NSLocalizedStringFromTable(@"Cfg strange line", @"dict", @"Err msg: Don't know what to do with this line")
 #define PHR_IMGINVALID NSLocalizedStringFromTable(@"Image path is invalid", @"dict", @"Error msg: Image path is invalid")
 #define PHR_INVLDENC NSLocalizedStringFromTable(@"Encoding argument invalid", @"dict", @"Error msg: Invalid / unknown encoding")
+#define PHR_CFGVIBRANTCONFL NSLocalizedStringFromTable(@"Cfg vibrant invalid", @"dict", @"Error msg: Appearance configuration is invalid")

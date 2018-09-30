@@ -89,9 +89,56 @@
                         [[theAttributes objectForKey:@"transparency"] floatValue] : DEFAULT_ALPHA];
 
     // Add content view
+    contentViewExtraHeight = 0;
     NSView *contentView = [[NSView alloc] initWithFrame:[self frame]];
     [self setContentView:contentView];
     [contentView release];
+
+    if (@available(macOS 10.10, *)) {
+        NSString *appearance = [theAttributes objectForKey:@"appearance"];
+        BOOL vibrant = NO;
+
+        // Appearances
+        if ([appearance isEqualToString:@"light"]) {
+            self.appearance = [NSAppearance appearanceNamed:NSAppearanceNameAqua];
+        } else if ([appearance isEqualToString:@"dark"]) {
+            self.appearance = [NSAppearance appearanceNamed:NSAppearanceNameVibrantDark];
+        } else if ([appearance isEqualToString:@"light-vibrant"]) {
+            vibrant = YES;
+            self.appearance = [NSAppearance appearanceNamed:NSAppearanceNameVibrantLight];
+        } else if ([appearance isEqualToString:@"dark-vibrant"]) {
+            vibrant = YES;
+            self.appearance = [NSAppearance appearanceNamed:NSAppearanceNameVibrantDark];
+        }
+
+        // Vibrancy setup
+        if (vibrant) {
+            if ([theAttributes objectForKey:@"transparency"]) {
+                [NSException raise:EXC_CONFIG format:PHR_CFGVIBRANTCONFL];
+            }
+            NSVisualEffectView *effectView = [[NSVisualEffectView alloc] initWithFrame:[self frame]];
+            [effectView setAutoresizingMask:NSViewWidthSizable|NSViewHeightSizable];
+            [effectView setBlendingMode: NSVisualEffectBlendingModeBehindWindow];
+            [self setContentView:effectView];
+            [effectView release];
+            contentViewExtraHeight += 10;
+            self.styleMask = self.styleMask | NSFullSizeContentViewWindowMask;
+        }
+
+        // With/Without titlebar
+        if ([theAttributes objectForKey:@"titlebar"] &&
+            [[theAttributes objectForKey:@"titlebar"] isEqualToString:@"0"]) {
+            self.titlebarAppearsTransparent = TRUE;
+            if (!vibrant) {
+                contentViewExtraHeight -= 10;
+            }
+        } else {
+            if (vibrant) {
+                contentViewExtraHeight += 10;
+            }
+            self.titlebarAppearsTransparent = FALSE;
+        }
+    }
 
     [self setupWindowWithElements:theElements];
 
@@ -168,6 +215,8 @@
 
     [self finishCancelButton];
     [self finishDefaultButton];
+
+    [self setContentSize:NSMakeSize([[self contentView] frame].size.width, [[self contentView] frame].size.height + contentViewExtraHeight)];
 
     [elmnts release];
 }
