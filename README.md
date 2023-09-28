@@ -1,3 +1,10 @@
+⚠️ **Pashua needs a new maintainer** ⚠️
+
+This project has been more or less inactive since 2018. In part, this is due to a lack of time, but even more due to a lack of interest. I haven’t used Pashua myself in years, and meanwhile have a rather ambivalent relationship to Apple and macOS, wich is why I hardly do any macOS development any more. All of this means that Pashua clearly does not have a bright future, at least not with me as the maintainer. Pashua turns 20 in November 2023, so it’s time to let go, right?
+
+**If you are reading this and are interested in taking over the project, please let me know.**
+
+
 # Pashua: Native macOS dialogs for scripting languages
 
 Pashua is a macOS application for creating native dialog windows from almost any programming language. Typically, it is used with languages that have none or only limited support for graphic user interfaces on macOS, such as AppleScript, Bash scripts, JavaScript, Perl, PHP, Python, Ruby, Tcl and others – and if your favourite language is not yet supported: writing the glue code for communicating with Pashua is pretty simple. See the **[Pashua Bindings repository](https://github.com/BlueM/Pashua-Bindings)** for code and more information.
